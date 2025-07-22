@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل التنقل - Afaq</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        /* Transportation Specific Styles */
+        .transport-category {
+            margin-bottom: 60px;
+        }
+
+        .transport-category h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 30px;
+            text-align: right; /* RTL alignment */
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 10px;
+        }
+
+        .transport-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .transport-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .transport-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .transport-card .icon {
+            font-size: 4em;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .transport-card h4 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+        }
+
+        .transport-card p {
+            font-size: 1.05em;
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .transport-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+            text-align: right;
+            border-top: 1px dashed var(--light-bg);
+            padding-top: 15px;
+        }
+        .transport-card ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 0.95em;
+        }
+        .transport-card ul li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .download-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .download-buttons .app-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .download-buttons .app-button:hover {
+            background-color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+        .download-buttons .app-button i {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+
+        /* General Tips Section */
+        .general-tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tip-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .tip-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tip-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .tip-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* No CTA Banner for this page */
+        .cta-banner {
+            display: none; /* Hide the CTA banner on this specific page */
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8em;
+            }
+            .page-header p {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .transport-options-grid, .general-tips-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .transport-card h4 {
+                font-size: 1.6em;
+            }
+            .transport-card p {
+                font-size: 1em;
+            }
+            .tip-card h3 {
+                font-size: 1.6em;
+            }
+            .tip-card p {
+                font-size: 1em;
+            }
+            .download-buttons .app-button {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .transport-options-grid, .general-tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .transport-card h4 {
+                font-size: 1.4em;
+            }
+            .transport-card p {
+                font-size: 0.95em;
+            }
+            .tip-card h3 {
+                font-size: 1.4em;
+            }
+            .tip-card p {
+                font-size: 0.9em;
+            }
+            .download-buttons {
+                gap: 10px;
+            }
+            .download-buttons .app-button {
+                padding: 6px 10px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>دليلك للتنقل في كوالالمبور</h1>
+            <p>اكتشف أسهل الطرق للتنقل في العاصمة الماليزية، من القطارات إلى تطبيقات التوصيل.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section transport-intro hidden">
+            <div class="section-container">
+                <p style="font-size: 1.15em; text-align: center; color: #555;">
+                    تتمتع كوالالمبور بنظام مواصلات عامة متطور ومتنوع، مما يجعل التنقل في المدينة سهلاً ومريحًا للطلاب الدوليين. سواء كنت تفضل القطارات السريعة، الحافلات المريحة، أو سهولة تطبيقات التوصيل، ستجد خيارات تناسب احتياجاتك وميزانيتك.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section transport-categories hidden">
+            <div class="section-container">
+                <div class="transport-category">
+                    <h3>نظام القطارات المتكامل (Rail Network)</h3>
+                    <p style="font-size: 1.05em; color: #666; text-align: right; margin-bottom: 20px;">
+                        تغطى كوالالمبور شبكة واسعة من القطارات التي تربط معظم مناطق المدينة وضواحيها، مما يوفر وسيلة سريعة وفعالة لتجنب الازدحام المروري. يمكنك الاطلاع على الخرائط الرسمية للشبكة لتخطيط رحلاتك.
+                    </p>
+                    <div class="transport-options-grid">
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-subway"></i></div>
+                            <h4>LRT (Light Rail Transit)</h4>
+                            <p>شبكة قطارات خفيفة وواسعة تغطي معظم المناطق الحضرية في كوالالمبور، مما يسهل الوصول إلى الوجهات الرئيسية.</p>
+                            <ul>
+                                <li>تغطية واسعة للمدينة.</li>
+                                <li>خيار سريع لتجنب الازدحام.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://www.myrapid.com.my/plan-my-journey/rail-network" target="_blank" class="app-button">خريطة شبكة القطارات (Rapid KL)</a>
+                            </div>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-train"></i></div>
+                            <h4>MRT (Mass Rapid Transit)</h4>
+                            <p>خطوط قطارات حديثة وفعالة تربط بين المراكز الحيوية والمناطق التجارية والسكنية الكبرى.</p>
+                            <ul>
+                                <li>خطوط حديثة ومريحة.</li>
+                                <li>ربط فعال بالمراكز التجارية.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://www.myrapid.com.my/plan-my-journey/rail-network" target="_blank" class="app-button">خريطة شبكة القطارات (Rapid KL)</a>
+                            </div>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-tram"></i></div>
+                            <h4>Monorail (القطار الأحادي)</h4>
+                            <p>خط أحادي السكة يمر بقلب المدينة ويوفر وصولًا سهلاً إلى مناطق التسوق والترفيه الرئيسية مثل Bukit Bintang.</p>
+                            <ul>
+                                <li>يمر بقلب المدينة.</li>
+                                <li>يصل إلى مناطق التسوق والترفيه.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://www.myrapid.com.my/plan-my-journey/rail-network" target="_blank" class="app-button">خريطة شبكة القطارات (Rapid KL)</a>
+                            </div>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-train"></i></div>
+                            <h4>KTM Komuter</h4>
+                            <p>نظام قطارات يربط كوالالمبور بضواحيها والمدن القريبة، مثالي للرحلات الأطول أو زيارة المناطق المحيطة.</p>
+                            <ul>
+                                <li>يربط المدينة بالضواحي.</li>
+                                <li>مناسب للرحلات الأطول.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://www.ktmb.com.my/assets/Map/ktm-komuter-map.jpg" target="_blank" class="app-button">خريطة KTM Komuter</a>
+                            </div>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-plane-departure"></i></div>
+                            <h4>KLIA Ekspres/Transit</h4>
+                            <p>خدمة قطارات سريعة ومباشرة تربط مطار كوالالمبور الدولي (KLIA) بوسط المدينة (KL Sentral) والعكس.</p>
+                            <ul>
+                                <li>الأسرع من وإلى المطار.</li>
+                                <li>مريح ومباشر.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://www.kliaekspres.com/plan-your-journey/route-map/" target="_blank" class="app-button">خريطة KLIA Ekspres</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-category">
+                    <h3>شبكة الحافلات العامة (Bus Network)</h3>
+                     <p style="font-size: 1.05em; color: #666; text-align: right; margin-bottom: 20px;">
+                        تكمل شبكة الحافلات نظام القطارات وتغطي مناطق أوسع، بما في ذلك خدمة الحافلات المجانية في وسط المدينة.
+                    </p>
+                    <div class="transport-options-grid">
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-bus"></i></div>
+                            <h4>Rapid KL Buses</h4>
+                            <p>الشبكة الرئيسية للحافلات العامة في كوالالمبور، تغطي المناطق التي قد لا تصلها شبكة القطارات.</p>
+                            <ul>
+                                <li>تغطية واسعة للمدينة.</li>
+                                <li>خيار اقتصادي.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://www.myrapid.com.my/plan-my-journey/bus-network" target="_blank" class="app-button">خريطة Rapid KL للحافلات</a>
+                            </div>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-bus"></i></div>
+                            <h4>Go KL City Bus (مجاني)</h4>
+                            <p>حافلات مكيفة ومجانية تمامًا، تغطي مسارات رئيسية وسياحية في وسط المدينة، مما يسهل التنقل المجاني.</p>
+                            <ul>
+                                <li>خدمة مجانية.</li>
+                                <li>مثالي للمناطق السياحية ووسط المدينة.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://goklbus.com/" target="_blank" class="app-button">الموقع الرسمي Go KL</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-category">
+                    <h3>تطبيقات التوصيل الذكية (Ride-Hailing Apps)</h3>
+                     <p style="font-size: 1.05em; color: #666; text-align: right; margin-bottom: 20px;">
+                        توفر هذه التطبيقات راحة كبيرة في التنقل بضغطة زر، وهي خيار شائع جداً في ماليزيا.
+                    </p>
+                    <div class="transport-options-grid">
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-car"></i></div>
+                            <h4>Grab</h4>
+                            <p>التطبيق الأكثر شعبية في ماليزيا للمواصلات، توصيل الطعام، وتوصيل الطرود. يوفر خدمة سريعة وموثوقة.</p>
+                            <ul>
+                                <li>الأكثر شيوعاً وموثوقية.</li>
+                                <li>خيارات متنوعة (سيارات، طعام، توصيل).</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://play.google.com/store/apps/details?id=com.grabtaxi.passenger" target="_blank" class="app-button"><i class="fab fa-google-play"></i> جوجل بلاي</a>
+                                <a href="https://apps.apple.com/my/app/grab-taxi-ride-food-delivery/id647268330" target="_blank" class="app-button"><i class="fab fa-apple"></i> آب ستور</a>
+                            </div>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-car-side"></i></div>
+                            <h4>InDrive</h4>
+                            <p>تطبيق توصيل يسمح للمستخدمين والسائقين بتقديم عروض أسعار، مما يوفر مرونة أكبر في تحديد التكلفة.</p>
+                            <ul>
+                                <li>مرونة في تحديد السعر.</li>
+                                <li>بديل جيد لـ Grab.</li>
+                            </ul>
+                            <div class="download-buttons">
+                                <a href="https://play.google.com/store/apps/details?id=sinet.startup.inDriver" target="_blank" class="app-button"><i class="fab fa-google-play"></i> جوجل بلاي</a>
+                                <a href="https://apps.apple.com/us/app/indrive-save-on-city-rides/id780125801" target="_blank" class="app-button"><i class="fab fa-apple"></i> آب ستور</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-category">
+                    <h3>نصائح أساسية للتنقل الفعال</h3>
+                    <div class="transport-options-grid">
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-id-card"></i></div>
+                            <h4>بطاقة Touch 'n Go</h4>
+                            <p>هي بطاقة ذكية للدفع المسبق لا غنى عنها في ماليزيا. تُستخدم في جميع القطارات، معظم الحافلات، رسوم الطرق السريعة (Tolls)، ومواقف السيارات، وحتى في بعض المتاجر ومحلات البقالة الكبرى. يمكنك شراؤها وشحنها بسهولة في محطات القطار، محطات الوقود، ومتاجر 7-Eleven. تأكد دائماً من وجود رصيد كافٍ لتجنب أي إزعاج.</p>
+                            <ul>
+                                <li>ضرورية لجميع وسائل النقل العام.</li>
+                                <li>تسهل الدفع وتوفر الوقت.</li>
+                                <li>يمكن إعادة شحنها بسهولة.</li>
+                            </ul>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
+                            <h4>تطبيقات تخطيط الرحلات</h4>
+                            <p>استخدم تطبيقات مثل Google Maps أو Moovit لتخطيط مسارات رحلاتك باستخدام وسائل النقل العام المختلفة. هذه التطبيقات توفر معلومات في الوقت الفعلي عن جداول المواصلات والمسارات البديلة لمساعدتك على التنقل بكفاءة.</p>
+                            <ul>
+                                <li>تخطيط المسارات بدقة.</li>
+                                <li>معلومات في الوقت الفعلي.</li>
+                            </ul>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon">🚦</div>
+                            <h4>تجنب ساعات الذروة</h4>
+                            <p>حاول تجنب التنقل في ساعات الذروة (عادةً من 7:00-9:00 صباحًا ومن 5:00-7:00 مساءً) لتجنب الازدحام الشديد في المواصلات العامة والطرق السريعة، مما يوفر عليك الوقت والجهد.</p>
+                            <ul>
+                                <li>يقلل من وقت التنقل.</li>
+                                <li>تجربة أكثر راحة.</li>
+                            </ul>
+                        </div>
+                        <div class="transport-card">
+                            <div class="icon"><i class="fas fa-walking"></i></div>
+                            <h4>المشي واستكشاف المناطق القريبة</h4>
+                            <p>تتميز العديد من مناطق كوالالمبور (خاصة حول المعاهد والمراكز التجارية) بممرات المشاة الآمنة والمريحة. استغل فرصة المشي لاستكشاف المناطق القريبة والاستمتاع بالأجواء المحلية، وهو خيار صحي وممتع.</p>
+                            <ul>
+                                <li>استكشاف المدينة سيراً على الأقدام.</li>
+                                <li>خيار صحي وممتع.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                    <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

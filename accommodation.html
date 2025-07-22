@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المساعدة في السكن - Afaq</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .info-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Accommodation Specific Styles */
+        .accommodation-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .type-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .type-card .type-image {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .type-card .type-content {
+            padding: 25px;
+        }
+
+        .type-card h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .type-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .type-card ul li {
+            position: relative;
+            padding-right: 20px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .type-card ul li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .type-card p { /* For descriptions without lists */
+            margin-bottom: 15px;
+        }
+
+        .how-afaq-helps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .help-step-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            border-top: 5px solid var(--secondary-color);
+        }
+        .help-step-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .help-step-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+        .help-step-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+
+        /* FAQ Section (Accordion) */
+        .faq-section .faq-item {
+            background-color: white;
+            border: 1px solid var(--light-bg);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .faq-section .faq-question {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-section .faq-question:hover {
+            background-color: var(--dark-bg);
+        }
+
+        .faq-section .faq-question .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-section .faq-question.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-section .faq-answer {
+            padding: 0 25px;
+            background-color: #fcfcfc;
+            border-top: 1px solid var(--light-bg);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            color: #444;
+            font-size: 1.1em;
+        }
+        .faq-section .faq-answer.active {
+             padding: 20px 25px;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-banner .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-banner .button:hover {
+            background-color: #FBC02D;
+            transform: translateY(-3px);
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8em;
+            }
+            .page-header p {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .info-grid, .accommodation-types-grid, .how-afaq-helps-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .type-card .type-image {
+                height: 180px;
+            }
+            .type-card h3 {
+                font-size: 1.8em;
+            }
+            .type-card ul li, .type-card p {
+                font-size: 1em;
+            }
+            .help-step-card h3 {
+                font-size: 1.6em;
+            }
+            .help-step-card p {
+                font-size: 1em;
+            }
+            .faq-section .faq-question {
+                font-size: 1.2em;
+            }
+            .faq-section .faq-answer {
+                font-size: 1em;
+            }
+            .cta-banner h2 {
+                font-size: 2.5em;
+            }
+            .cta-banner p {
+                font-size: 1.2em;
+            }
+            .cta-banner .button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .info-grid, .accommodation-types-grid, .how-afaq-helps-grid {
+                grid-template-columns: 1fr;
+            }
+            .type-card .type-image {
+                height: 150px;
+            }
+            .type-card h3 {
+                font-size: 1.6em;
+            }
+            .type-card ul li, .type-card p {
+                font-size: 0.95em;
+            }
+            .help-step-card h3 {
+                font-size: 1.4em;
+            }
+            .help-step-card p {
+                font-size: 0.9em;
+            }
+            .faq-section .faq-question {
+                font-size: 1em;
+                padding: 15px 20px;
+            }
+            .faq-section .faq-answer {
+                font-size: 0.95em;
+                padding: 15px 20px;
+            }
+            .cta-banner h2 {
+                font-size: 1.8em;
+            }
+            .cta-banner p {
+                font-size: 1.1em;
+            }
+            .cta-banner .button {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                 <li><a href="restaurants.html">دليل المطاعم</a></li>
+                 <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>المساعدة في السكن في ماليزيا</h1>
+            <p>نجد لك السكن المناسب لرحلتك التعليمية في قلب كوالالمبور.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section why-accommodation-matters hidden">
+            <div class="section-container">
+                <h2>لماذا السكن المناسب مهم؟</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">🧘‍♀️</div>
+                        <h3>الراحة والتركيز</h3>
+                        <p>سكن مريح وبعيد عن الإزعاج يساعدك على التركيز بشكل كامل في دراستك.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">💰</div>
+                        <h3>التكاليف والميزانية</h3>
+                        <p>نساعدك في إيجاد خيارات سكن تناسب ميزانيتك دون المساس بجودة المعيشة.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📍</div>
+                        <h3>الموقع الاستراتيجي</h3>
+                        <p>القرب من معهدك ووسائل النقل والمرافق الأساسية يجعل حياتك أسهل.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🔒</div>
+                        <h3>الأمان والطمأنينة</h3>
+                        <p>نحرص على أن يكون سكنك في بيئة آمنة وموثوقة لتشعر بالطمأنينة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section accommodation-types hidden">
+            <div class="section-container">
+                <h2>أنواع السكن المتاحة في ماليزيا</h2>
+                <div class="accommodation-types-grid">
+                    <div class="type-card">
+                        <div class="type-image" style="background-image: url('images/room1.png');"></div>
+                        <div class="type-content">
+                            <h3>شقة كاملة (Full Apartment)</h3>
+                            <p>توفر خصوصية تامة ومساحة واسعة، مثالية للعائلات أو مجموعة من الأصدقاء.</p>
+                            <ul>
+                                <li>عادةً ما تتكون من 3 غرف نوم.</li>
+                                <li>تضم حمامين ومطبخًا مجهزًا.</li>
+                                <li>تتضمن صالة معيشة واسعة.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="type-card">
+                        <div class="type-image" style="background-image: url('images/room2.png');"></div>
+                        <div class="type-content">
+                            <h3>غرفة داخل شقة مشتركة (Shared Apartment Room)</h3>
+                            <p>خيار اقتصادي يتيح لك استئجار غرفة خاصة داخل شقة يتشاركها عدة أشخاص. توفر الشقة مطبخًا وصالة مشتركة.</p>
+                            <ul>
+                                <li>**غرفة صغيرة (Small Room):** الخيار الأكثر اقتصادية.</li>
+                                <li>**غرفة متوسطة (Medium Room):** توفر مساحة أكبر قليلاً.</li>
+                                <li>**غرفة ماستر (Master Room):** عادةً ما تكون الأكبر وتحتوي على حمام خاص بها.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="type-card">
+                        <div class="type-image" style="background-image: url('images/room3.png');"></div>
+                        <div class="type-content">
+                            <h3>استوديو (Studio Apartment)</h3>
+                            <p>شقة صغيرة وعصرية تضم غرفة نوم، مطبخًا صغيرًا، وحمامًا في مساحة واحدة مفتوحة. مثالية للأفراد الباحثين عن الخصوصية والراحة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section how-afaq-helps hidden">
+            <div class="section-container">
+                <h2>كيف تساعدك آفاق في إيجاد سكنك؟</h2>
+                <div class="how-afaq-helps-grid">
+                    <div class="help-step-card">
+                        <div class="icon">💬</div>
+                        <h3>استشارة مجانية ومخصصة</h3>
+                        <p>نفهم احتياجاتك وميزانيتك وتفضيلاتك بدقة لنقدم لك أفضل الخيارات.</p>
+                    </div>
+                    <div class="help-step-card">
+                        <div class="icon">🔍</div>
+                        <h3>خيارات سكن موثوقة</h3>
+                        <p>نوفر لك قائمة بخيارات سكن موصى بها من جهات موثوقة لضمان جودتها وأمانها.</p>
+                    </div>
+                    <div class="help-step-card">
+                        <div class="icon">🤝</div>
+                        <h3>تنسيق وإرشادات</h3>
+                        <p>نساعد في تنسيق زيارات السكنات ونقدم لك الإرشادات اللازمة لفهم عقود الإيجار.</p>
+                    </div>
+                    <div class="help-step-card">
+                        <div class="icon">📞</div>
+                        <h3>دعم مستمر</h3>
+                        <p>نقدم لك الدعم والإجابة على استفساراتك حتى بعد استقرارك في سكنك الجديد.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section accommodation-tips hidden">
+            <div class="section-container">
+                <h2>نصائح هامة للطلاب الباحثين عن سكن</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">🗓️</div>
+                        <h3>ابدأ البحث مبكرًا</h3>
+                        <p>كلما بدأت بحثك عن السكن مبكراً، زادت خياراتك وفرصتك في العثور على ما يناسبك.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📊</div>
+                        <h3>حدد ميزانيتك بدقة</h3>
+                        <p>ضع ميزانية واضحة للسكن لتضييق الخيارات وتجنب الإفراط في الإنفاق.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🚇</div>
+                        <h3>اهتم بالموقع والمواصلات</h3>
+                        <p>اختر سكنًا قريبًا من معهدك ووسائل النقل العام لتقليل وقت وتكلفة التنقل.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📝</div>
+                        <h3>اقرأ العقد جيدًا</h3>
+                        <p>افهم جميع شروط عقد الإيجار والتأمين والإيداع قبل التوقيع.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">⚠️</div>
+                        <h3>كن حذرًا من الاحتيال</h3>
+                        <p>لا تدفع مبالغ كبيرة قبل التأكد من مصداقية العرض ورؤية السكن بنفسك (أو عبر فيديو موثوق).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section faq-section hidden">
+            <div class="section-container">
+                <h2>الأسئلة الشائعة حول السكن</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            هل توفر آفاق سكنًا خاصًا بها للطلاب؟
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            لا، "آفاق" لا توفر سكنًا خاصًا بها بشكل مباشر. ولكننا نقدم خدمة مساعدة شاملة للطلاب في إيجاد وتنسيق السكن المناسب لهم من خلال شبكة من الخيارات الموثوقة في ماليزيا.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            كم تبلغ تكلفة السكن الشهرية التقريبية في كوالالمبور؟
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            تتراوح تكلفة السكن في كوالالمبور بشكل كبير حسب نوع السكن وموقعه ومرافقه. بشكل عام، يمكن أن تبدأ الغرفة المشتركة من حوالي 800-1200 رينجت ماليزي شهريًا، بينما قد تتراوح تكلفة غرفة الماستر أو الاستوديو من 1300-2300 رينجت ماليزي أو أكثر.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            هل يمكنني اختيار السكن قبل وصولي إلى ماليزيا؟
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            نعم، نساعدك في اختيار السكن قبل وصولك. يمكننا توفير صور وتفاصيل وخيارات متنوعة، وفي بعض الحالات يمكن ترتيب جولات افتراضية (فيديو) للسكنات المتاحة.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ما هي المستندات المطلوبة لاستئجار سكن في ماليزيا؟
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            عادةً ما تتضمن المستندات المطلوبة نسخة من جواز سفرك، تأشيرتك الدراسية (إذا كنت تحتاجها)، وأحياناً خطاب قبول المعهد. قد يطلب الملاك أيضاً إيداعًا (Deposit) يعادل شهر أو شهرين من الإيجار.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            هل السكنات المقترحة قريبة من وسائل النقل العام؟
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            نحرص على أن تكون معظم خيارات السكن التي نقترحها قريبة من محطات المترو (LRT/MRT) أو الحافلات، لتسهيل تنقل الطلاب إلى معاهدهم والمرافق الأخرى في كوالالمبور.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner hidden">
+            <div class="section-container">
+                <h2>دعنا نساعدك في إيجاد سكنك المثالي في ماليزيا!</h2>
+                <p>تواصل مع مستشارينا الآن لتبدأ رحلتك التعليمية بأقصى راحة واطمئنان.</p>
+                <a href="tel:+60183848634" class="button">تواصل معنا الآن</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+
+            // FAQ Accordion functionality for this page
+            const faqQuestions = document.querySelectorAll('.faq-section .faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    // Close other open answers in this section
+                    faqQuestions.forEach(q => {
+                        if (q !== question && q.classList.contains('active')) {
+                            q.classList.remove('active');
+                            q.nextElementSibling.style.maxHeight = null;
+                            q.nextElementSibling.classList.remove('active');
+                        }
+                    });
+
+                    const isActive = question.classList.toggle('active');
+
+                    if (isActive) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        answer.classList.add('active');
+                    } else {
+                        answer.style.maxHeight = null;
+                        answer.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

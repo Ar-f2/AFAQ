@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لماذا ماليزيا؟ - Afaq</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content .content-block {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .main-content .content-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .main-content .content-block.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .main-content .content-block .text-content {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .main-content .content-block .text-content h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: right; /* Default for RTL */
+            position: relative;
+        }
+
+        .main-content .content-block .text-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0; /* Align with text for RTL */
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+        
+        .main-content .content-block.reverse .text-content h2::after {
+            left: 0; /* Align to left for reversed block */
+            right: auto;
+        }
+
+
+        .main-content .content-block .text-content p {
+            font-size: 1.15em;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .main-content .content-block .image-content {
+            flex: 1;
+            min-width: 300px; /* Minimum width for image to prevent shrinking too much */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .main-content .content-block .image-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* Animations */
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+            .page-header p {
+                font-size: 1.1em;
+            }
+            .main-content .content-block {
+                flex-direction: column; /* Stack on smaller screens */
+                text-align: center;
+            }
+            .main-content .content-block.reverse {
+                flex-direction: column; /* Still stack, reverse not applicable in column */
+            }
+            .main-content .content-block .text-content {
+                padding: 0;
+            }
+            .main-content .content-block .text-content h2 {
+                font-size: 2em;
+                text-align: center; /* Center heading when stacked */
+            }
+            .main-content .content-block .text-content h2::after {
+                left: 50%; /* Center underline when stacked */
+                right: auto;
+            }
+            .main-content .content-block .image-content {
+                min-width: unset;
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2em;
+            }
+            .page-header p {
+                font-size: 0.9em;
+            }
+            .main-content .content-block {
+                padding: 30px;
+                margin-bottom: 40px;
+            }
+            .main-content .content-block .text-content h2 {
+                font-size: 1.8em;
+            }
+            .main-content .content-block .text-content p {
+                font-size: 1em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                       <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>لماذا تختار الدراسة في ماليزيا؟</h1>
+            <p>اكتشف الأسباب التي تجعل ماليزيا وجهة مثالية للطلاب من جميع أنحاء العالم.</p>
+        </div>
+    </section>
+
+    <main class="main-content section-container">
+        <div class="content-block hidden">
+            <div class="text-content">
+                <h2>🎓 جودة تعليم معتمدة</h2>
+                <p>تتميز ماليزيا بوجود عدد كبير من معاهد اللغة المعتمدة من وزارة التعليم وهيئات الاعتماد الدولية. يتم تقديم المناهج بواسطة معلمين مؤهلين، مما يضمن تجربة تعليمية فعالة وموثوقة تؤهلك للتحدث بالإنجليزية بطلاقة.</p>
+            </div>
+            <div class="image-content">
+               <img src="images/MA1.png" alt="Afaq Logo">
+            </div>
+        </div>
+
+        <div class="content-block reverse hidden">
+            <div class="text-content">
+                <h2>💰 تكاليف مناسبة للجميع</h2>
+                <p>بالمقارنة مع الدول الغربية، تعتبر تكاليف الدراسة والمعيشة في ماليزيا معقولة جداً. يمكنك الحصول على تعليم عالي الجودة وتجربة معيشية مريحة دون الحاجة لميزانية ضخمة، مما يجعلها خياراً اقتصادياً ذكياً.</p>
+            </div>
+            <div class="image-content">
+               <img src="images/MA2.png" alt="Afaq Logo">
+            </div>
+        </div>
+        
+        <div class="content-block hidden">
+            <div class="text-content">
+                <h2>🗣️ بيئة مثالية لممارسة اللغة</h2>
+                <p>الشعب الماليزي يتحدث اللغة الإنجليزية على نطاق واسع، مما يسهل عليك التواصل في حياتك اليومية. بالإضافة إلى ذلك، جميع معاهدنا تقع في العاصمة كوالالمبور، وهي مدينة عالمية مليئة بالسياح والطلاب الدوليين، مما يوفر لك فرصاً لا حصر لها لممارسة اللغة الإنجليزية خارج الفصل الدراسي.</p>
+            </div>
+            <div class="image-content">
+               <img src="images/MA3.png" alt="Afaq Logo">
+            </div>
+        </div>
+
+        <div class="content-block reverse hidden">
+            <div class="text-content">
+                <h2>🌍 بيئة إسلامية ومطاعم عربية</h2>
+                <p>ماليزيا بلد مسلم يوفر بيئة آمنة ومرحبة. ستجد الأكل الحلال متوفراً في كل مكان، بالإضافة إلى انتشار المطاعم العربية (اليمنية، السورية، العراقية) بكثرة في كوالالمبور، مما يجعلك تشعر وكأنك في بلدك الثاني.</p>
+            </div>
+            <div class="image-content">
+               <img src="images/MA4.png" alt="Afaq Logo">
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
