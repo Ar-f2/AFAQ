@@ -1,7 +1,7 @@
 /*
     ===================================================================
     هذا هو الملف الرئيسي للجافاسكريبت لموقع Afaq
-    ===================================================================
+    ==================================================================
 */
 
 
@@ -42,25 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* -------------------------------------------------------------
-        بلوك 3: التحكم بمعارض الصور (Sliders) - إصلاح شامل
+        بلوك 3: التحكم بمعارض الصور (Sliders)
         -------------------------------------------------------------
         هذا الكود يقوم بتشغيل أي معرض صور في الصفحة، سواء في الهيرو
-        أو في صفحات المعاهد، مع دعم التحريك بواسطة transform.
+        أو في صفحات المعاهد.
     */
     const sliders = document.querySelectorAll('.slider-container');
     
     sliders.forEach(slider => {
         const slides = slider.querySelectorAll('.slide');
-        // بما أن الأسهم محذوفة من HTML لصفحة index.html، ستكون هذه المتغيرات null
-        const nextBtn = slider.parentElement.querySelector('.next-arrow');
-        const prevBtn = slider.parentElement.querySelector('.prev-arrow');
+        const nextBtn = slider.parentElement.querySelector('.next-arrow'); // قد تكون null إذا لم يكن هناك أسهم
+        const prevBtn = slider.parentElement.querySelector('.prev-arrow'); // قد تكون null إذا لم يكن هناك أسهم
         let currentSlide = 0;
-        let slideInterval; // متغير لتخزين معرف الـ setInterval
+        let slideInterval; 
 
-        // وظيفة لتحديث موقع شريط التمرير بناءً على currentSlide
         const updateSlider = () => {
+            // هذا الجزء هو المسؤول عن تحريك الشرائح (translateX)
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-            // إذا كان هناك حاجة لتفعيل/إلغاء فئة 'active' للشرائح لأي تأثيرات إضافية في CSS
+            
+            // هذا الجزء يضمن أن شريحة واحدة فقط تكون 'active' (مفيدة لتأثيرات بصرية إضافية)
             slides.forEach((slide, index) => {
                 if (index === currentSlide) {
                     slide.classList.add('active');
@@ -70,25 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // وظيفة للتقدم إلى الشريحة التالية
         const goToNextSlide = () => {
             currentSlide = (currentSlide + 1) % slides.length;
             updateSlider();
         };
 
-        // وظيفة للتقدم إلى الشريحة السابقة
         const goToPrevSlide = () => {
             currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             updateSlider();
         };
 
-        // بدء التشغيل التلقائي للشريط
         const startAutoSlide = () => {
-            clearInterval(slideInterval); // مسح أي تشغيل سابق
+            clearInterval(slideInterval);
             slideInterval = setInterval(goToNextSlide, 3000); // تغيير الشريحة كل 3 ثوانٍ
         };
 
-        // إذا كان هناك أسهم، أضف مستمعي الأحداث (لضمان التوافق مع صفحات قد تحتوي على أسهم)
+        // إذا كانت هناك أسهم، أضف مستمعي الأحداث
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 goToNextSlide();
@@ -102,10 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // إظهار الشريحة الأولى عند تحميل الصفحة
+        // إظهار الشريحة الأولى عند تحميل الصفحة وبدء التشغيل التلقائي
         if (slides.length > 0) {
-            updateSlider(); // تحديث الشريط للعرض الأولي
-            startAutoSlide(); // بدء التشغيل التلقائي
+            updateSlider(); 
+            startAutoSlide(); 
         }
     });
     
@@ -114,15 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
         -------------------------------------------------------------
         هذا هو كود تأثير 'الواو'. يقوم بمراقبة الصفحة، وعندما يصل 
         الزائر إلى قسم جديد، يجعله يظهر بحركة ناعمة.
+        تم تعديل الـ threshold هنا لضمان عمله على الجوال بشكل أفضل.
     */
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
+                observer.unobserve(entry.target); // توقف عن المراقبة بعد أن يصبح مرئيًا
             }
         });
     }, {
-        threshold: 0.1 // يبدأ التأثير عندما يظهر 10% من العنصر
+        threshold: 0.01 // تم تغيير الـ threshold إلى قيمة صغيرة جداً (1%) لضمان الظهور على الجوال
     });
 
     const hiddenElements = document.querySelectorAll('.hidden');
@@ -135,9 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
         عليها في قسم معرض الصور.
     */
     const lightbox = document.getElementById('lightbox-modal');
-    if (lightbox) { // التأكد من وجود Lightbox في الصفحة
+    if (lightbox) { 
         const lightboxImage = document.getElementById('lightbox-image');
-        const galleryImages = document.querySelectorAll('.gallery-image'); // تأكد أن صور المعرض تحمل هذه الفئة
+        const galleryImages = document.querySelectorAll('.gallery-image');
         const closeBtn = document.querySelector('.lightbox-close');
         const prevBtn = document.querySelector('.lightbox-prev');
         const nextBtn = document.querySelector('.lightbox-next');
@@ -177,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // إغلاق اللايت بوكس عند النقر خارج الصورة
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 lightbox.style.display = 'none';
@@ -191,23 +189,21 @@ document.addEventListener('DOMContentLoaded', () => {
         يسمح بفتح وإغلاق الإجابات على الأسئلة الشائعة.
     */
     const faqItems = document.querySelectorAll('.faq-item');
-    if (faqItems.length > 0) { // التأكد من وجود عناصر FAQ
+    if (faqItems.length > 0) { 
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             const answer = item.querySelector('.faq-answer');
             question.addEventListener('click', () => {
                 const isOpen = item.classList.contains('active');
                 
-                // إغلاق جميع الأسئلة المفتوحة الأخرى
                 faqItems.forEach(i => {
-                    if (i !== item) { // لا تغلق العنصر الذي تم النقر عليه
+                    if (i !== item) { 
                         i.classList.remove('active');
                         const otherAnswer = i.querySelector('.faq-answer');
                         if (otherAnswer) otherAnswer.style.maxHeight = null;
                     }
                 });
 
-                // فتح أو إغلاق السؤال الحالي
                 if (!isOpen) {
                     item.classList.add('active');
                     if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
@@ -226,17 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
         في أي صفحة (مثل صفحات المعاهد التي قد تستخدم ألسنة للبرامج).
     */
     const tabButtons = document.querySelectorAll('.tab-button');
-    if (tabButtons.length > 0) { // التأكد من وجود ألسنة
+    if (tabButtons.length > 0) { 
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const tabId = button.dataset.tab;
                 const tabContents = document.querySelectorAll('.tab-content');
 
-                // إزالة فئة active من جميع الأزرار والمحتوى
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
 
-                // إضافة فئة active للزر والمحتوى المحدد
                 button.classList.add('active');
                 const activeTabContent = document.getElementById(tabId);
                 if (activeTabContent) {
