@@ -219,6 +219,23 @@ img {
     color: var(--primary-color);
 }
 
+/* Registration Button in Nav */
+.btn-register-nav {
+    background: linear-gradient(135deg, var(--primary-color), #3498db) !important;
+    color: var(--white) !important;
+    padding: 0.625rem 1.25rem !important;
+    border-radius: var(--border-radius) !important;
+    font-weight: 700 !important;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-base) !important;
+}
+
+.btn-register-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, #3498db, var(--primary-color)) !important;
+}
+
 /* Mobile Menu Toggle */
 .nav-toggle {
     display: none;

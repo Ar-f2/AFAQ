@@ -1,0 +1,518 @@
+/* ====================================
+   Registration Page Styles
+   تنسيقات صفحة التسجيل
+   ==================================== */
+
+/* ====== Page Header ====== */
+.page-header {
+    position: relative;
+    padding: 150px 0 100px;
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+    background-image: url('../images/register-header-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: var(--white);
+    margin-top: var(--header-height);
+}
+
+.page-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(96, 125, 139, 0.9), rgba(69, 90, 100, 0.9));
+}
+
+/* ====== Registration Section ====== */
+.registration-section {
+    background-color: var(--light-color);
+}
+
+.registration-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ====== Form Progress ====== */
+.form-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xxl);
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.progress-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    position: relative;
+    padding: var(--spacing-sm);
+}
+
+.progress-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 100%;
+    height: 2px;
+    background: var(--light-color);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.progress-step.active:not(:last-child)::after {
+    background: var(--primary-color);
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--light-color);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+    z-index: 1;
+    transition: var(--transition-base);
+}
+
+.progress-step.active .step-number {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.step-label {
+    font-weight: 600;
+    color: var(--text-light);
+    transition: var(--transition-base);
+}
+
+.progress-step.active .step-label {
+    color: var(--primary-color);
+}
+
+/* ====== Registration Form ====== */
+.registration-form {
+    background: var(--white);
+    padding: var(--spacing-xxl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step-title {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.step-title i {
+    font-size: 1.5rem;
+}
+
+/* ====== Form Grid ====== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* ====== Form Controls ====== */
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.form-group label.required::after {
+    content: ' *';
+    color: var(--danger);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--light-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    transition: var(--transition-base);
+    background: var(--white);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.1);
+}
+
+.form-control::placeholder {
+    color: var(--text-light);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-hint {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: var(--spacing-xs);
+}
+
+.error-message {
+    display: none;
+    color: var(--danger);
+    font-size: 0.85rem;
+    margin-top: var(--spacing-xs);
+}
+
+.form-control.error {
+    border-color: var(--danger);
+}
+
+.form-control.error + .error-message {
+    display: block;
+}
+
+/* ====== Radio & Checkbox ====== */
+.radio-group {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.radio-label input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.checkbox-label a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* ====== Study Type Cards ====== */
+.study-type-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.study-type-card {
+    cursor: pointer;
+}
+
+.study-type-card input[type="radio"] {
+    display: none;
+}
+
+.card-content {
+    padding: var(--spacing-xl);
+    border: 3px solid var(--light-color);
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    transition: var(--transition-base);
+    background: var(--white);
+}
+
+.card-content i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.card-content h3 {
+    font-size: 1.125rem;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.study-type-card:hover .card-content {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.study-type-card input[type="radio"]:checked + .card-content {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(96, 125, 139, 0.1), rgba(187, 222, 251, 0.1));
+    box-shadow: var(--shadow-lg);
+}
+
+/* ====== Form Actions ====== */
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--light-color);
+}
+
+.btn-submit {
+    min-width: 200px;
+}
+
+/* ====== Review Section ====== */
+.review-section {
+    background: var(--light-color);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xl);
+}
+
+.review-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.review-group:last-child {
+    margin-bottom: 0;
+}
+
+.review-group h3 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--white);
+}
+
+.review-item {
+    display: flex;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+.review-label {
+    flex: 0 0 180px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.review-value {
+    flex: 1;
+    color: var(--text-light);
+}
+
+/* ====== Success Message ====== */
+.success-message {
+    text-align: center;
+    padding: var(--spacing-xxl);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--success);
+    margin-bottom: var(--spacing-lg);
+}
+
+.success-message h2 {
+    color: var(--success);
+    margin-bottom: var(--spacing-md);
+}
+
+.success-message p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-xl);
+}
+
+.success-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ====== Info Section ====== */
+.info-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.info-item {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.info-item i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.info-item h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.info-item p {
+    color: var(--text-light);
+}
+
+/* ====== Conditional Fields ====== */
+.conditional-field {
+    transition: var(--transition-base);
+}
+
+/* ====== Responsive Design ====== */
+@media (max-width: 768px) {
+    .form-progress {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .progress-step:not(:last-child)::after {
+        display: none;
+    }
+
+    .progress-step {
+        justify-content: flex-start;
+    }
+
+    .registration-form {
+        padding: var(--spacing-lg);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .study-type-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    .review-item {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .review-label {
+        flex: none;
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+
+    .success-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 120px 0 80px;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+    }
+
+    .step-title {
+        font-size: 1.5rem;
+    }
+
+    .form-control {
+        padding: 0.75rem 0.875rem;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}

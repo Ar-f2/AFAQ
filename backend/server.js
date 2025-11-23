@@ -53,9 +53,9 @@ app.use('/api/v1/auth', require('./routes/auth'));
 app.use('/api/v1/agents', require('./routes/agents'));
 app.use('/api/v1/institutes', require('./routes/institutes'));
 app.use('/api/v1/media', require('./routes/media'));
+app.use('/api/v1/registrations', require('./routes/registrations'));
 // TODO: Add these routes later
 // app.use('/api/v1/pages', require('./routes/pages'));
-// app.use('/api/v1/registrations', require('./routes/registrations'));
 // app.use('/api/v1/messages', require('./routes/messages'));
 
 // Health check endpoint

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="سجل الآن للدراسة في ماليزيا - نموذج التسجيل">
+    <title>التسجيل - أفاق</title>
+
+    <link rel="icon" href="assets/images/afaq-logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/register.css">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <div class="nav-brand">
+                <img src="assets/images/afaq-logo.png" alt="AFAQ Logo" class="logo">
+                <span class="brand-name">أفاق</span>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="institutes.html" class="nav-link">المعاهد</a></li>
+                <li class="nav-item"><a href="universities.html" class="nav-link">الجامعات</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">الخدمات <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                        <li><a href="restaurants.html">دليل المطاعم</a></li>
+                        <li><a href="transportation.html">المواصلات</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="why-malaysia.html" class="nav-link">لماذا ماليزيا؟</a></li>
+                <li class="nav-item"><a href="agents.html" class="nav-link">وكلاؤنا</a></li>
+                <li class="nav-item"><a href="register.html" class="nav-link active">التسجيل</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" data-aos="fade-down">
+        <div class="page-header-overlay"></div>
+        <div class="container">
+            <h1 class="page-title">سجل الآن للدراسة في ماليزيا</h1>
+            <p class="page-subtitle">املأ النموذج وسنتواصل معك خلال 24 ساعة</p>
+        </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section class="registration-section section-padding">
+        <div class="container">
+            <div class="registration-container">
+                <!-- Form Progress -->
+                <div class="form-progress" data-aos="fade-up">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">المعلومات الشخصية</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">التفاصيل الأكاديمية</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">مراجعة وإرسال</div>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="registrationForm" class="registration-form" data-aos="fade-up" data-aos-delay="200">
+
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" data-step="1">
+                        <h2 class="step-title">
+                            <i class="fas fa-user"></i>
+                            المعلومات الشخصية
+                        </h2>
+
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="fullName" class="required">الاسم الكامل</label>
+                                <input type="text" id="fullName" name="fullName"
+                                       class="form-control"
+                                       placeholder="أدخل اسمك الكامل كما في جواز السفر"
+                                       required>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">البريد الإلكتروني</label>
+                                <input type="email" id="email" name="email"
+                                       class="form-control"
+                                       placeholder="example@email.com">
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="required">رقم الهاتف</label>
+                                <input type="tel" id="phone" name="phone"
+                                       class="form-control"
+                                       placeholder="+966 5X XXX XXXX"
+                                       required>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="whatsapp" class="required">رقم الواتساب</label>
+                                <input type="tel" id="whatsapp" name="whatsapp"
+                                       class="form-control"
+                                       placeholder="+966 5X XXX XXXX"
+                                       required>
+                                <small class="form-hint">سنتواصل معك عبر الواتساب</small>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nationality" class="required">الجنسية</label>
+                                <select id="nationality" name="nationality" class="form-control" required>
+                                    <option value="">اختر الجنسية</option>
+                                    <option value="السعودية">السعودية</option>
+                                    <option value="الإمارات">الإمارات</option>
+                                    <option value="الكويت">الكويت</option>
+                                    <option value="قطر">قطر</option>
+                                    <option value="البحرين">البحرين</option>
+                                    <option value="عمان">عمان</option>
+                                    <option value="مصر">مصر</option>
+                                    <option value="الأردن">الأردن</option>
+                                    <option value="فلسطين">فلسطين</option>
+                                    <option value="سوريا">سوريا</option>
+                                    <option value="لبنان">لبنان</option>
+                                    <option value="العراق">العراق</option>
+                                    <option value="اليمن">اليمن</option>
+                                    <option value="السودان">السودان</option>
+                                    <option value="ليبيا">ليبيا</option>
+                                    <option value="تونس">تونس</option>
+                                    <option value="الجزائر">الجزائر</option>
+                                    <option value="المغرب">المغرب</option>
+                                    <option value="موريتانيا">موريتانيا</option>
+                                    <option value="أخرى">أخرى</option>
+                                </select>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dateOfBirth" class="required">تاريخ الميلاد</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth"
+                                       class="form-control"
+                                       max="2010-12-31"
+                                       required>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="required">الجنس</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="gender" value="ذكر" required>
+                                        <span>ذكر</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="gender" value="أنثى" required>
+                                        <span>أنثى</span>
+                                    </label>
+                                </div>
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                                التالي <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Academic Information -->
+                    <div class="form-step" data-step="2">
+                        <h2 class="step-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            التفاصيل الأكاديمية
+                        </h2>
+
+                        <div class="form-grid">
+                            <!-- Study Type Selection -->
+                            <div class="form-group full-width">
+                                <label class="required">نوع الدراسة المطلوب</label>
+                                <div class="study-type-cards">
+                                    <label class="study-type-card">
+                                        <input type="radio" name="studyType" value="معهد لغة" required>
+                                        <div class="card-content">
+                                            <i class="fas fa-language"></i>
+                                            <h3>معهد لغة إنجليزية</h3>
+                                            <p>دورات لغة من 3 أشهر إلى سنة</p>
+                                        </div>
+                                    </label>
+                                    <label class="study-type-card">
+                                        <input type="radio" name="studyType" value="جامعة" required>
+                                        <div class="card-content">
+                                            <i class="fas fa-university"></i>
+                                            <h3>جامعة (بكالوريوس/ماجستير)</h3>
+                                            <p>برامج أكاديمية متنوعة</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <!-- Last Certificate -->
+                            <div class="form-group full-width">
+                                <label for="educationLevel" class="required">آخر شهادة حصلت عليها</label>
+                                <select id="educationLevel" name="educationLevel" class="form-control" required>
+                                    <option value="">اختر الشهادة</option>
+                                    <option value="ثانوية">الثانوية العامة</option>
+                                    <option value="دبلوم">دبلوم</option>
+                                    <option value="بكالوريوس">بكالوريوس</option>
+                                    <option value="ماجستير">ماجستير</option>
+                                    <option value="دكتوراه">دكتوراه</option>
+                                    <option value="أخرى">أخرى</option>
+                                </select>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <!-- Institute Duration (shown only for معهد لغة) -->
+                            <div class="form-group full-width conditional-field" id="instituteDurationGroup" style="display: none;">
+                                <label for="instituteDuration" class="required">المدة المطلوبة للدراسة</label>
+                                <select id="instituteDuration" name="instituteDuration" class="form-control">
+                                    <option value="">اختر المدة</option>
+                                    <option value="3 أشهر">3 أشهر</option>
+                                    <option value="6 أشهر">6 أشهر</option>
+                                    <option value="9 أشهر">9 أشهر</option>
+                                    <option value="سنة">سنة كاملة</option>
+                                    <option value="أكثر من سنة">أكثر من سنة</option>
+                                </select>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <!-- University Fields (shown only for جامعة) -->
+                            <div id="universityFields" class="conditional-field" style="display: none;">
+
+                                <div class="form-group full-width">
+                                    <label for="desiredField" class="required">التخصص المطلوب</label>
+                                    <select id="desiredField" name="desiredField" class="form-control">
+                                        <option value="">اختر التخصص</option>
+                                        <optgroup label="الهندسة">
+                                            <option value="هندسة الحاسوب">هندسة الحاسوب</option>
+                                            <option value="هندسة البرمجيات">هندسة البرمجيات</option>
+                                            <option value="الهندسة الكهربائية">الهندسة الكهربائية</option>
+                                            <option value="الهندسة الميكانيكية">الهندسة الميكانيكية</option>
+                                            <option value="الهندسة المدنية">الهندسة المدنية</option>
+                                            <option value="الهندسة الكيميائية">الهندسة الكيميائية</option>
+                                        </optgroup>
+                                        <optgroup label="الطب والصحة">
+                                            <option value="الطب البشري">الطب البشري</option>
+                                            <option value="طب الأسنان">طب الأسنان</option>
+                                            <option value="الصيدلة">الصيدلة</option>
+                                            <option value="التمريض">التمريض</option>
+                                            <option value="العلاج الطبيعي">العلاج الطبيعي</option>
+                                        </optgroup>
+                                        <optgroup label="إدارة الأعمال">
+                                            <option value="إدارة الأعمال">إدارة الأعمال</option>
+                                            <option value="المحاسبة">المحاسبة</option>
+                                            <option value="التسويق">التسويق</option>
+                                            <option value="المالية">المالية والمصرفية</option>
+                                        </optgroup>
+                                        <optgroup label="علوم الحاسب">
+                                            <option value="علوم الحاسب">علوم الحاسب</option>
+                                            <option value="تقنية المعلومات">تقنية المعلومات</option>
+                                            <option value="الأمن السيبراني">الأمن السيبراني</option>
+                                            <option value="الذكاء الاصطناعي">الذكاء الاصطناعي</option>
+                                        </optgroup>
+                                        <optgroup label="أخرى">
+                                            <option value="القانون">القانون</option>
+                                            <option value="الإعلام">الإعلام والاتصال</option>
+                                            <option value="التصميم">التصميم الجرافيكي</option>
+                                            <option value="العمارة">العمارة</option>
+                                            <option value="أخرى">تخصص آخر</option>
+                                        </optgroup>
+                                    </select>
+                                    <span class="error-message"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gpa" class="required">معدل الثانوية / البكالوريوس</label>
+                                    <input type="number" id="gpa" name="gpa"
+                                           class="form-control"
+                                           placeholder="مثال: 95 أو 4.5"
+                                           step="0.01"
+                                           min="0"
+                                           max="100">
+                                    <small class="form-hint">أدخل المعدل بالنسبة المئوية أو من 5</small>
+                                    <span class="error-message"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="preferredUniversity">الجامعة المفضلة (اختياري)</label>
+                                    <input type="text" id="preferredUniversity" name="preferredUniversity"
+                                           class="form-control"
+                                           placeholder="اسم الجامعة المفضلة إن وجدت">
+                                    <span class="error-message"></span>
+                                </div>
+                            </div>
+
+                            <!-- Expected Start Date -->
+                            <div class="form-group full-width">
+                                <label for="expectedStartDate">تاريخ بدء الدراسة المتوقع</label>
+                                <select id="expectedStartDate" name="expectedStartDate" class="form-control">
+                                    <option value="">اختر الفصل الدراسي</option>
+                                    <option value="يناير 2025">يناير 2025</option>
+                                    <option value="مارس 2025">مارس 2025</option>
+                                    <option value="مايو 2025">مايو 2025</option>
+                                    <option value="يوليو 2025">يوليو 2025</option>
+                                    <option value="سبتمبر 2025">سبتمبر 2025</option>
+                                    <option value="نوفمبر 2025">نوفمبر 2025</option>
+                                    <option value="غير محدد">غير محدد بعد</option>
+                                </select>
+                            </div>
+
+                            <!-- Additional Notes -->
+                            <div class="form-group full-width">
+                                <label for="notes">ملاحظات إضافية (اختياري)</label>
+                                <textarea id="notes" name="notes"
+                                          class="form-control"
+                                          rows="4"
+                                          placeholder="أي معلومات إضافية تود مشاركتها معنا..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="prevStep(1)">
+                                <i class="fas fa-arrow-right"></i> السابق
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(3)">
+                                التالي <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Review and Submit -->
+                    <div class="form-step" data-step="3">
+                        <h2 class="step-title">
+                            <i class="fas fa-check-circle"></i>
+                            مراجعة البيانات
+                        </h2>
+
+                        <div class="review-section" id="reviewSection">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span>
+                                    أوافق على
+                                    <a href="terms.html" target="_blank">الشروط والأحكام</a>
+                                    و
+                                    <a href="privacy.html" target="_blank">سياسة الخصوصية</a>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="prevStep(2)">
+                                <i class="fas fa-arrow-right"></i> السابق
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                إرسال الطلب
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>تم إرسال طلبك بنجاح!</h2>
+                    <p>شكراً لك على التسجيل. سنتواصل معك خلال 24 ساعة عبر الواتساب.</p>
+                    <div class="success-actions">
+                        <a href="index.html" class="btn btn-primary">العودة للرئيسية</a>
+                        <a href="agents.html" class="btn btn-outline">تواصل مع وكيل الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section bg-light section-padding">
+        <div class="container">
+            <div class="info-content">
+                <div class="info-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>بياناتك آمنة</h3>
+                    <p>نحافظ على سرية معلوماتك الشخصية</p>
+                </div>
+                <div class="info-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-clock"></i>
+                    <h3>رد سريع</h3>
+                    <p>نتواصل معك خلال 24 ساعة</p>
+                </div>
+                <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-headset"></i>
+                    <h3>دعم مستمر</h3>
+                    <p>فريقنا معك من التسجيل حتى القبول</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="assets/images/afaq-logo.png" alt="AFAQ Logo" class="footer-logo">
+                        <h3>أفاق</h3>
+                    </div>
+                    <p>بوابتك للدراسة في ماليزيا</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="institutes.html">المعاهد</a></li>
+                        <li><a href="universities.html">الجامعات</a></li>
+                        <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                        <li><a href="agents.html">وكلاؤنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>الخدمات</h4>
+                    <ul class="footer-links">
+                        <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                        <li><a href="restaurants.html">دليل المطاعم</a></li>
+                        <li><a href="transportation.html">المواصلات</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>معلومات التواصل</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> كوالالمبور، ماليزيا</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+60123456789">+60 12 345 6789</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@afaq.com">info@afaq.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 أفاق - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/register.js"></script>
+</body>
+</html>
