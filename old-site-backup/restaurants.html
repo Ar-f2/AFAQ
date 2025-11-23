@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل المطاعم - Afaq</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        /* Restaurants Specific Styles */
+        .restaurant-category {
+            margin-bottom: 60px;
+        }
+
+        .restaurant-category h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 30px;
+            text-align: right; /* RTL alignment */
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 10px;
+        }
+
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .restaurant-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .restaurant-card .rest-image {
+            width: 100%;
+            height: 180px; /* Fixed height for image area */
+            background-size: contain; /* Changed to contain to show full logo */
+            background-repeat: no-repeat;
+            background-position: center;
+            border-bottom: 3px solid var(--secondary-color);
+            display: flex; /* To center the logo within the div */
+            align-items: center;
+            justify-content: center;
+            padding: 10px; /* Add some padding around the logo */
+            box-sizing: border-box; /* Include padding in height */
+            color: #ccc; /* Placeholder text color */
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .restaurant-card .rest-image img {
+            max-width: 90%; /* Ensure logo fits */
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .restaurant-card .rest-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .restaurant-card .rest-content h4 {
+            font-size: 1.7em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-align: center; /* Center restaurant name */
+        }
+
+        .restaurant-card .rest-content p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+            flex-grow: 1; /* Allow description to take space */
+            text-align: right; /* RTL alignment */
+        }
+
+        .restaurant-card .rest-info {
+            display: flex;
+            justify-content: flex-end; /* Align cuisine to right for RTL */
+            align-items: center;
+            margin-top: 15px;
+            border-top: 1px dashed var(--light-bg);
+            padding-top: 10px;
+        }
+
+        .restaurant-card .rest-info .cuisine {
+            font-size: 0.95em;
+            color: var(--dark-bg);
+            font-weight: 600;
+        }
+       
+        .restaurant-card .rest-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .restaurant-card .rest-link a:hover {
+            color: var(--dark-bg);
+            text-decoration: underline;
+        }
+
+        /* General Tips Section */
+        .general-tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tip-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .tip-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tip-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .tip-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8em;
+            }
+            .page-header p {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .restaurants-grid, .general-tips-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .restaurant-card .rest-image {
+                height: 150px;
+            }
+            .restaurant-card .rest-content h4 {
+                font-size: 1.5em;
+            }
+            .restaurant-card .rest-content p {
+                font-size: 0.95em;
+            }
+            .restaurant-card .rest-info .cuisine {
+                font-size: 0.9em;
+            }
+            .tip-card h3 {
+                font-size: 1.6em;
+            }
+            .tip-card p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .restaurants-grid, .general-tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .restaurant-card .rest-image {
+                height: 120px;
+            }
+            .restaurant-card .rest-content h4 {
+                font-size: 1.4em;
+            }
+            .restaurant-card .rest-content p {
+                font-size: 0.9em;
+            }
+            .restaurant-card .rest-info .cuisine {
+                font-size: 0.85em;
+            }
+            .tip-card h3 {
+                font-size: 1.4em;
+            }
+            .tip-card p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>دليل المطاعم في كوالالمبور</h1>
+            <p>اكتشف أفضل خيارات الطعام الحلال والشهي بالقرب من معاهد اللغة في KLCC.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section restaurant-introduction hidden">
+            <div class="section-container">
+                <p style="font-size: 1.15em; text-align: center; color: #555;">
+                    تتميز كوالالمبور بتنوعها الثقافي الذي ينعكس في مطاعمها الغنية. سواء كنت تبحث عن المأكولات العربية الأصيلة، الأطباق الآسيوية التقليدية، أو الخيارات العالمية، ستجد كل ما تشتهيه بالقرب من أشهر معاهد اللغة في منطقة KLCC وشارع العرب.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section restaurant-categories hidden">
+            <div class="section-container">
+                <div class="restaurant-category">
+                    <h3>المطاعم العربية والشرق أوسطية</h3>
+                    <div class="restaurants-grid">
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/city.jpeg" alt="شعار شاورما سيتي"> 
+                            </div>
+                            <div class="rest-content">
+                                <h4>شاورما سيتي (Shawarma City KLCC)</h4>
+                                <p>يقدم شاورما ممتازة ويُعد من أفضل خيارات الشاورما في ماليزيا، بالإضافة إلى وجبات سريعة بلمسة عربية. يُفضل عند البحث عن شاورما لذيذة.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: شاورما، عربي</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Shawarma+City+KLCC" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/BBQ.jpeg" alt="شعار بي بي كيو نايتس">
+                            </div>
+                            <div class="rest-content">
+                                <h4>بي بي كيو نايتس (BBQ Nights)</h4>
+                                <p>مطعم يقدم أطباق الأرز المتنوعة، المشويات اللذيذة، المسالا الهندية، وغيرها من المأكولات الشهية من المطبخ الباكستاني والهندي والشرق أوسطي.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: هندي، باكستاني، شامي</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/BBQ+Nights+Restaurant+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/asia.jpeg" alt="شعار مطعم سنترال آسيا">
+                            </div>
+                            <div class="rest-content">
+                                <h4>مطعم سنترال آسيا (Sentral Asia Restaurant)</h4>
+                                <p>يقدم تشكيلة من المأكولات الأوزبكية والآسيوية الوسطى، مثل البلوف والشيش طاووق في أجواء مميزة.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: آسيا الوسطى</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Sentral+Asia+Restaurant+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                       
+                         
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/hala.jpeg" alt="شعار مطعم حلب">
+                            </div>
+                            <div class="rest-content">
+                                <h4>مطعم حلب (Halab Restaurant)</h4>
+                                <p>من المطاعم السورية المعروفة في شارع العرب، يقدم مأكولات شامية تقليدية ومجموعة واسعة من المشويات والمقبلات.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: سوري</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/place/Halab+Gate+Shawarma/@3.1474432,101.7081826,16z/data=!3m1!4b1!4m6!3m5!1s0x31cc362bc110f4e3:0xe7f0958291fe3537!8m2!3d3.1474378!4d101.7107629!16s%2Fg%2F11bwym9hxf?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/dmashg.png" alt="شعار مطعم دمشق">
+                            </div>
+                            <div class="rest-content">
+                                <h4>مطعم دمشق (Damascus Restaurant)</h4>
+                                <p>يقدم المأكولات السورية الأصيلة بأسعار معقولة، ويشتهر بالأطباق الشعبية والمشويات. خيار شائع للطلاب والعرب في شارع العرب.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: سوري</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Damascus+Restaurant+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/street.jpeg" alt="شعار شاورما ستريت">
+                            </div>
+                            <div class="rest-content">
+                                <h4>شاورما ستريت (Shawarma Street)</h4>
+                                <p>متخصص في الشاورما بأنواعها، ويعتبر من الوجهات السريعة والمفضلة لمحبي الشاورما في منطقة شارع العرب.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: شاورما، عربي</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Shawarma+Street+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restaurant-category">
+                    <h3>المطاعم الماليزية والهندية</h3>
+                    <div class="restaurants-grid">
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/balt.jpeg" alt="شعار ناسي كاندر بيليتا">
+                            </div>
+                            <div class="rest-content">
+                                <h4>مطعم ناسي كاندر بيليتا (Nasi Kandar Pelita)</h4>
+                                <p>مطعم ماليزي شهير يعمل على مدار 24 ساعة، يقدم طبق ناسي كاندر التقليدي مع تشكيلة واسعة من الكاري والأطباق الجانبية الحلال. يقع مقابل شيفيلد.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: ماليزي</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Nasi+Kandar+Pelita+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/nz.png" alt="شعار إن زد كاري هاوس">
+                            </div>
+                            <div class="rest-content">
+                                <h4>إن زد كاري هاوس (NZ Curry House)</h4>
+                                <p>مطعم هندي-ماليزي شهير بجوار بنك الراجحي، يقدم أطباق الأرز والكاري الهندية والمحلية المتنوعة في أجواء بسيطة وشعبية.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: هندي/ماليزي</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/dir//NZ+Curry+House+@+KLCC,+Lot+42,+Jln+Ampang,+50450+Kuala+Lumpur,+Federal+Territory+of+Kuala+Lumpur/@3.1593572,101.7048958,17z/data=!4m18!1m8!3m7!1s0x31cc49427d5ef1ad:0xe79abe351df5c13d!2sNZ+Curry+House+@+KLCC!8m2!3d3.1593572!4d101.7096594!15sChtOWiBDdXJyeSBIb3VzZSBLdWFsYSBMdW1wdXIiA4gBAVodIhtueiBjdXJyeSBob3VzZSBrdWFsYSBsdW1wdXKSARhpbmRpYW5fbXVzbGltX3Jlc3RhdXJhbnSqAVIKDS9nLzExaHk5cXk3ZHQQATIeEAEiGhQpNtmmF-6PI2fFe-hzw_z0xYrghEiaLIjnMh8QAiIbbnogY3VycnkgaG91c2Uga3VhbGEgbHVtcHVy4AEA!16s%2Fg%2F11h89hcwcz!4m8!1m0!1m5!1m1!1s0x31cc49427d5ef1ad:0xe79abe351df5c13d!2m2!1d101.7096932!2d3.1593312!3e3?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restaurant-category">
+                    <h3>مطاعم البرجر والوجبات السريعة</h3>
+                    <div class="restaurants-grid">
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/bell.svg" alt="شعار تاكو بيل">
+                            </div>
+                            <div class="rest-content">
+                                <h4>تاكو بيل (Taco Bell)</h4>
+                                <p>مطعم وجبات سريعة أمريكي يقدم سندويشات التاكو، البوريتو، الناتشوز، وغيرها من الأطباق المكسيكية بلمسة عصرية. يتوفر داخل مول Avenue K.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">الوجبات السريعة (مكسيكي)</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Taco+Bell+Avenue+K+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/m.png" alt="شعار ماكدونالدز">
+                            </div>
+                            <div class="rest-content">
+                                <h4>ماكدونالدز (McDonald's)</h4>
+                                <p>سلسلة الوجبات السريعة العالمية الشهيرة، تقدم البرجر والبطاطس والمشروبات. جميع فروعها في ماليزيا حلال ومعروفة عالمياً.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">الوجبات السريعة</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/McDonald's+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/kfc.png" alt="شعار كنتاكي">
+                            </div>
+                            <div class="rest-content">
+                                <h4>كنتاكي فرايد تشيكن (KFC)</h4>
+                                <p>مطعم الوجبات السريعة المعروف بالدجاج المقلي. فروع كثيرة ومتوفرة بسهولة في جميع أنحاء المدينة، وجميعها حلال.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">الوجبات السريعة</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/place/KFC+@+Avenue+K/@3.1594569,101.7087078,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc37d0c34d51bf:0xcd8fa489eaee2456!8m2!3d3.1594516!4d101.7135734!16s%2Fg%2F11f3n3qpg8?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/16.png" alt="شعار برجر أون 16">
+                            </div>
+                            <div class="rest-content">
+                                <h4>برجر أون 16 (Burger On 16)</h4>
+                                <p>مطعم برجر يقدم خيارات متنوعة من البرجر الطازج بلمسة محلية وعالمية، وله شعبية بين محبي البرجر في كوالالمبور.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">برجر</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Burger+On+16+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/kgp.png" alt="شعار برجر كي جي بي">
+                            </div>
+                            <div class="rest-content">
+                                <h4>برجر كي جي بي (Burger KGP)</h4>
+                                <p>مطعم برجر آخر يقدم برجر شهيًا وفريدًا من نوعه، يُعرف بابتكاره في تقديم وجبات البرجر الشهية.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">برجر</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Burger+KGP+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/king.jpeg" alt="شعار بروستد كينج تشيكن">
+                            </div>
+                            <div class="rest-content">
+                                <h4>بروستد كينج تشيكن (Broasted King Chicken)</h4>
+                                <p>يعتبر من أفضل مطاعم البروست في ماليزيا ويُلقب بـ "بيك ماليزيا" لجودة دجاجه المقلي والمقرمش، خيار مفضل للكثيرين.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">بروستد</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Broasted+King+Chicken+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/hot.jpeg" alt="شعار بيتزا هت">
+                            </div>
+                            <div class="rest-content">
+                                <h4>بيتزا هت (Pizza Hut)</h4>
+                                <p>مطعم البيتزا الشهير يقدم تشكيلة واسعة من البيتزا والمعكرونة والأطباق الجانبية، خيار جيد للوجبات السريعة والمتوفرة في معظم المراكز التجارية.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">بيتزا/وجبات سريعة</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/place/Pizza+Hut+Restaurant+@Avenue+K+KLCC/@3.1593173,101.70849,17z/data=!3m2!4b1!5s0x31cc37d0d9e98683:0x9b7468c5cf30657d!4m6!3m5!1s0x31cc37e38b9775a3:0x1b836b4ea3518d6d!8m2!3d3.159312!4d101.7133556!16s%2Fg%2F11h9nhq2ts?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/kudo.jpeg" alt="شعار مطعم كودو كودو">
+                            </div>
+                            <div class="rest-content">
+                                <h4>مطعم كودو كودو (Kudu Kudu Restaurant)</h4>
+                                <p>مطعم برجر آخر يقدم برجر شهيًا وفريدًا من نوعه، يُعرف بابتكاره في تقديم وجبات البرجر الشهية.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">برجر </span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/dir//Kudo+Kudo,+12,+Jalan+Yap+Kwan+Seng,+Kampung+Baru,+50450+Kuala+Lumpur,+Wilayah+Persekutuan/@3.1620256,101.706871,16z/data=!4m18!1m8!3m7!1s0x31cc390003765079:0x281ee0cd984a79a6!2sKudo+Kudo!8m2!3d3.1620256!4d101.7121068!15sCiFLdWR1IEt1ZHUgUmVzdGF1cmFudCBLdWFsYSBMdW1wdXJaIyIha3VkdSBrdWR1IHJlc3RhdXJhbnQga3VhbGEgbHVtcHVykgEKcmVzdGF1cmFudKoBYxABKhgiFGt1ZHUga3VkdSByZXN0YXVyYW50KAAyHhABIhoZop2QRr3d9pupLkA6QvPCWxb4DJykasKRMjIlEAIiIWt1ZHUga3VkdSByZXN0YXVyYW50IGt1YWxhIGx1bXB1cuABAA!16s%2Fg%2F11w3ggxj99!4m8!1m0!1m5!1m1!1s0x31cc390003765079:0x281ee0cd984a79a6!2m2!1d101.7121068!2d3.1620256!3e3?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restaurant-category">
+                    <h3>خيارات متنوعة في المراكز التجارية وشارع العرب</h3>
+                    <div class="restaurants-grid">
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/klcc.jpg" alt="صورة أبراج البتروناس KLCC">
+                            </div>
+                            <div class="rest-content">
+                                <h4>مول KLCC (الدور الرابع)</h4>
+                                <p>يضم الدور الرابع في أبراج البتروناس (Suria KLCC) مجموعة كبيرة ومتنوعة من المطاعم والمقاهي العالمية والماليزية، تلبي جميع الأذواق.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">متنوع</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/place/Suria+KLCC/@3.1574878,101.7108007,17z/data=!3m2!4b1!5s0x31cc3624d159584b:0xd7fdfb7d8ae99871!4m6!3m5!1s0x31cc37d12d669c1f:0xc955b08cfc1aae29!8m2!3d3.1572757!4d101.7122335!16zL20vMDR2c21f?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">الموقع </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/arb.jpg" alt="صورة شارع العرب بوكيت بنتانج">
+                            </div>
+                            <div class="rest-content">
+                                <h4>شارع العرب (Bukit Bintang / Arab Street)</h4>
+                                <p>منطقة حيوية ومليئة بالمطاعم العربية الممتازة مثل حلب ودمشق وشاورما ستريت، بالإضافة إلى المقاهي والأماكن الترفيهية. يعد وجهة رئيسية للطعام والتسوق.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">المطبخ: عربي، متنوع</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/search/Jalan+Alor+or+Bukit+Bintang+Kuala+Lumpur" target="_blank">الموقع على الخريطة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="restaurant-card">
+                            <div class="rest-image">
+                                <img src="images/mall.webp" alt="صورة مول بافليون">
+                            </div>
+                            <div class="rest-content">
+                                <h4>مول بافيليون (Pavilion KL)</h4>
+                                <p>يحتوي على العديد من المطاعم العالمية والمحلية الفاخرة والاقتصادية في طوابقه المتعددة، بما في ذلك خيارات حلال واسعة ومتنوعة. وجهة تسوق وطعام رئيسية.</p>
+                                <div class="rest-info">
+                                    <span class="cuisine">متنوع، عالمي</span>
+                                </div>
+                                <div class="rest-link" style="text-align: center; margin-top: 10px;">
+                                    <a href="https://www.google.com/maps/place/Pavilion+Kuala+Lumpur/@3.1489661,101.7108322,17z/data=!3m2!4b1!5s0x31cc362c627d7f09:0xf28ee07c85efb9c0!4m6!3m5!1s0x31cc362c8935509b:0xed966c50b0a79fb4!8m2!3d3.1489607!4d101.7134125!16s%2Fm%2F02rsrts?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">الموقع </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section general-food-tips hidden">
+            <div class="section-container">
+                <h2>نصائح عامة حول الطعام في ماليزيا</h2>
+                <div class="general-tips-grid">
+                    <div class="tip-card">
+                        <div class="icon">🕌</div>
+                        <h3>الطعام الحلال</h3>
+                        <p>ماليزيا دولة مسلمة، ومعظم المطاعم تقدم طعامًا حلالًا. ابحث عن شعار "حلال" على واجهة المطعم لتأكيد ذلك.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="icon">🍜</div>
+                        <h3>تنوع المأكولات</h3>
+                        <p>استمتع بتجربة مجموعة واسعة من المأكولات الماليزية، الصينية، الهندية، والعربية، بالإضافة إلى المأكولات العالمية.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="icon">🛵</div>
+                        <h3>خدمات التوصيل</h3>
+                        <p>يمكنك استخدام تطبيقات التوصيل الشهيرة مثل Foodpanda و GrabFood لطلب الطعام إلى سكنك بسهولة وراحة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

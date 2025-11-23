@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elit Language Centre - آفاق</title>
+    <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+            /* ألوان ELIT الجديدة */
+            --elit-orange: #FF8C00; /* برتقالي ELIT الأساسي */
+            --elit-grey: #696969; /* رمادي ELIT الأساسي */
+            --elit-blue: #87CEEB; /* أزرق ELIT الثانوي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .info-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Table Styling (General for Offers and Intake) */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .data-table th, .data-table td {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .data-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+        .data-table td.highlight {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+        }
+        
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-banner .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-banner .button:hover {
+            background-color: #FBC02D;
+            transform: translateY(-3px);
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* ELIT Specific Styles */
+        .elit-about-section .info-grid .info-card .icon {
+            color: var(--elit-orange); /* أيقونات ELIT بلونها الخاص */
+        }
+        .elit-about-section .info-card h3 {
+            color: var(--elit-grey);
+        }
+        .elit-about-section .info-card:hover {
+            border-top-color: var(--elit-orange);
+        }
+
+        .elit-programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .elit-program-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-top: 5px solid var(--elit-orange); /* لون خاص بـ ELIT */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .elit-program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .elit-program-card h3 {
+            font-size: 1.8em;
+            color: var(--elit-grey);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .elit-program-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .elit-program-card ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 1em;
+        }
+        .elit-program-card ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--elit-orange);
+            font-weight: bold;
+        }
+
+        .course-timetable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .timetable-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-top: 5px solid var(--elit-blue); /* لون خاص بـ ELIT */
+        }
+        .timetable-card h3 {
+            font-size: 1.8em;
+            color: var(--elit-grey);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .timetable-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .timetable-card ul li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 1.05em;
+        }
+        .timetable-card ul li strong {
+            color: var(--elit-orange);
+        }
+
+        .elit-pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        .elit-pricing-table th, .elit-pricing-table td {
+            padding: 12px 10px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 0.95em;
+        }
+        .elit-pricing-table th {
+            background-color: var(--elit-grey); /* Header color for ELIT tables */
+            color: white;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+        .elit-pricing-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+        .elit-pricing-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+        .elit-pricing-table td.duration {
+            font-weight: bold;
+            color: var(--elit-grey);
+            text-align: right;
+        }
+        .elit-pricing-table td.price-value {
+            color: #333;
+        }
+        .elit-pricing-table td.total-price {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+            text-align: center;
+            background-color: #FFF9C4;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8em;
+            }
+            .page-header p {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .info-grid, .elit-programs-grid, .course-timetable-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .data-table th, .data-table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .elit-pricing-table th, .elit-pricing-table td {
+                padding: 8px 5px;
+                font-size: 0.85em;
+            }
+            .cta-banner h2 {
+                font-size: 2.5em;
+            }
+            .cta-banner p {
+                font-size: 1.2em;
+            }
+            .cta-banner .button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .info-grid, .elit-programs-grid, .course-timetable-grid {
+                grid-template-columns: 1fr;
+            }
+            .data-table th, .data-table td {
+                font-size: 0.8em;
+            }
+            .elit-pricing-table th, .elit-pricing-table td {
+                font-size: 0.75em;
+                padding: 6px 4px;
+            }
+            /* Consider hiding some columns for very small screens if necessary for ELIT pricing tables */
+            .elit-pricing-table th:nth-child(2),
+            .elit-pricing-table td:nth-child(2),
+            .elit-pricing-table th:nth-child(3),
+            .elit-pricing-table td:nth-child(3) {
+                /* display: none; */
+            }
+            .cta-banner h2 {
+                font-size: 1.8em;
+            }
+            .cta-banner p {
+                font-size: 1.1em;
+            }
+            .cta-banner .button {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>معهد Elit Language Centre</h1>
+            <p>ELIT: حيث تأخذك اللغة الإنجليزية إلى أبعد مما تتخيل.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section elit-about-section hidden">
+            <div class="section-container">
+                <h2>عن معهد ELIT</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">✨</div>
+                        <h3>هوية جديدة ومستقبل مشرق</h3>
+                        <p>يسعدنا الكشف عن هويتنا التجارية الجديدة التي تمثل فصلاً جديدًا مع التزامنا بتمكين الطلاب.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🦅</div>
+                        <h3>لماذا النسر؟</h3>
+                        <p>النسر يرمز إلى القيادة والقوة والإمكانات اللامحدودة، وهي الصفات التي نؤمن بضرورة أن يمتلكها متعلمو اللغة الإنجليزية.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🎨</div>
+                        <h3>ألواننا الجديدة</h3>
+                        <p>البرتقالي للطاقة والحماس، الرمادي للحكمة والاحترافية، والأزرق للسماء والمحيط، مما يعكس الفرص اللامحدودة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section elit-programs hidden">
+            <div class="section-container">
+                <h2>برامجنا التعليمية</h2>
+                <div class="elit-programs-grid">
+                    <div class="elit-program-card">
+                        <h3>دورات عامة (General English Course)</h3>
+                        <p>تركز على تعلم وتحسين مهارات القراءة والكتابة والاستماع والتحدث وتعلم قواعد اللغة الإنجليزية ومفرداتها.</p>
+                        <ul>
+                            <li>الصفوف تستمر لمدة 4 ساعات في اليوم (3 ساعات يوم الجمعة)</li>
+                            <li>لمدة 5 أيام في الأسبوع</li>
+                        </ul>
+                    </div>
+                    <div class="elit-program-card">
+                        <h3>دورات مكثفة (Intensive English Course)</h3>
+                        <p>تركيز على تعلم وتحسين مهارات القراءة والكتابة والاستماع والتحدث، وتعلم قواعد اللغة الإنجليزية ومفرداتها.</p>
+                        <ul>
+                            <li>الصفوف تستمر لمدة 4 ساعات في اليوم (3 ساعات يوم الجمعة)</li>
+                            <li>لمدة 5 أيام في الأسبوع</li>
+                            <li>حصص محادثة مركزة لتطوير مهارة التحدث 4 أيام في الأسبوع.</li>
+                        </ul>
+                    </div>
+                    <div class="elit-program-card">
+                        <h3>مستويات دورات اللغة الإنجليزية</h3>
+                        <ul>
+                            <li>تحضير ابتدائي: مدة الدورة شهر.</li>
+                            <li>ابتدائي: مستوى 1, 2, 3 (مدة الدورة 3 أشهر).</li>
+                            <li>متوسط: مستوى 1, 2, 3 (مدة الدورة 3 أشهر).</li>
+                            <li>متقدم: مستوى 1, 2 (مدة الدورة 2-1 شهر).</li>
+                            <li>تحضير آيلتس: مستوى 1, 2 (مدة الدورة 2-1 شهر).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section elit-timetables hidden">
+            <div class="section-container">
+                <h2>توقيت الحصص الدراسية</h2>
+                <div class="course-timetable-grid">
+                    <div class="timetable-card">
+                        <h3>الحصص الصباحية</h3>
+                        <ul>
+                            <li>**من الإثنين إلى الخميس:** 8:30 صباحًا إلى 12:30 مساءً</li>
+                            <li>**الجمعة:** 9:00 صباحًا إلى 12:00 مساءً</li>
+                        </ul>
+                    </div>
+                    <div class="timetable-card">
+                        <h3>الحصص المسائية</h3>
+                        <ul>
+                            <li>**من الإثنين إلى الخميس:** 2:00 مساءً إلى 6:00 مساءً</li>
+                            <li>**الجمعة:** 2:30 مساءً إلى 5:30 مساءً</li>
+                        </ul>
+                    </div>
+                    <div class="timetable-card">
+                        <h3>حصص المحادثة (الدورة المكثفة)</h3>
+                        <ul>
+                            <li>**من الإثنين إلى الخميس:** 12:45 مساءً إلى 1:45 مساءً</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section elit-fees hidden">
+            <div class="section-container">
+                <h2>رسوم ELIT Language Centre لعام 2024</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">جميع الرسوم بالرينجت الماليزي (MYR).</p>
+
+                <h3>رسوم دورات اللغة الإنجليزية العامة (GEC) للطلاب الذين يحتاجون إلى تأشيرة</h3>
+                <div class="table-wrapper">
+                    <table class="elit-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>الأشهر</th>
+                                <th>الدورات</th>
+                                <th>ساعات الدراسة/الأسبوع</th>
+                                <th>رسوم الدراسة</th>
+                                <th>رسوم الإدارة</th>
+                                <th>الكتب</th>
+                                <th>رسوم الفيزا</th>
+                                <th>المجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>5</td><td>General English</td><td>19</td><td>8,350</td><td>مجاني</td><td>مجاني</td><td>1,500</td><td>9,850</td></tr>
+                            <tr><td>6</td><td>General English</td><td>19</td><td>10,020</td><td>مجاني</td><td>مجاني</td><td>1,500</td><td>11,520</td></tr>
+                            <tr><td>7</td><td>General English</td><td>19</td><td>11,690</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>13,690</td></tr>
+                            <tr><td>8</td><td>General English</td><td>19</td><td>13,360</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>15,360</td></tr>
+                            <tr><td>9</td><td>General English</td><td>19</td><td>15,030</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>17,030</td></tr>
+                            <tr><td>10</td><td>General English</td><td>19</td><td>16,700</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>18,700</td></tr>
+                            <tr><td>11</td><td>General English</td><td>19</td><td>18,370</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>20,370</td></tr>
+                            <tr><td>12</td><td>General English</td><td>19</td><td>20,040</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>22,040</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px;">رسوم دورات اللغة الإنجليزية المكثفة (IEC) للطلاب الذين يحتاجون إلى تأشيرة</h3>
+                <div class="table-wrapper">
+                    <table class="elit-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>الأشهر</th>
+                                <th>الدورات</th>
+                                <th>ساعات الدراسة/الأسبوع</th>
+                                <th>رسوم الدراسة</th>
+                                <th>رسوم الإدارة</th>
+                                <th>الكتب</th>
+                                <th>رسوم الفيزا</th>
+                                <th>المجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>5</td><td>Intensive English</td><td>23</td><td>10,800</td><td>مجاني</td><td>مجاني</td><td>1,500</td><td>12,300</td></tr>
+                            <tr><td>6</td><td>Intensive English</td><td>23</td><td>12,960</td><td>مجاني</td><td>مجاني</td><td>1,500</td><td>14,460</td></tr>
+                            <tr><td>7</td><td>Intensive English</td><td>23</td><td>15,120</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>17,120</td></tr>
+                            <tr><td>8</td><td>Intensive English</td><td>23</td><td>17,280</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>19,280</td></tr>
+                            <tr><td>9</td><td>Intensive English</td><td>23</td><td>19,440</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>21,440</td></tr>
+                            <tr><td>10</td><td>Intensive English</td><td>23</td><td>21,600</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>23,600</td></tr>
+                            <tr><td>11</td><td>Intensive English</td><td>23</td><td>23,760</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>25,760</td></tr>
+                            <tr><td>12</td><td>Intensive English</td><td>23</td><td>25,920</td><td>مجاني</td><td>مجاني</td><td>2,000</td><td>27,920</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px;">رسوم دورات اللغة الإنجليزية العامة (GEC) للطلاب بدون تأشيرة</h3>
+                <div class="table-wrapper">
+                    <table class="elit-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>الأشهر</th>
+                                <th>رسوم التسجيل</th>
+                                <th>رسوم الدورة</th>
+                                <th>المجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>شهر واحد</td><td>500</td><td>1670</td><td>2170</td></tr>
+                            <tr><td>شهرين</td><td>500</td><td>3340</td><td>3840</td></tr>
+                            <tr><td>ثلاثة أشهر</td><td>500</td><td>5010</td><td>5510</td></tr>
+                            <tr><td>أربعة أشهر</td><td>750</td><td>6680</td><td>7430</td></tr>
+                            <tr><td>خمسة أشهر</td><td>750</td><td>8350</td><td>9100</td></tr>
+                            <tr><td>ستة أشهر</td><td>750</td><td>10020</td><td>10790</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px;">رسوم دورات اللغة الإنجليزية المكثفة (IEC) للطلاب بدون تأشيرة</h3>
+                <div class="table-wrapper">
+                    <table class="elit-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>الأشهر</th>
+                                <th>رسوم التسجيل</th>
+                                <th>رسوم الدورة</th>
+                                <th>المجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>شهر واحد</td><td>600</td><td>2160</td><td>2760</td></tr>
+                            <tr><td>شهرين</td><td>600</td><td>4320</td><td>4920</td></tr>
+                            <tr><td>ثلاثة أشهر</td><td>600</td><td>6480</td><td>7080</td></tr>
+                            <tr><td>أربعة أشهر</td><td>800</td><td>8640</td><td>9440</td></tr>
+                            <tr><td>خمسة أشهر</td><td>800</td><td>10800</td><td>11600</td></tr>
+                            <tr><td>ستة أشهر</td><td>800</td><td>12960</td><td>13760</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="note" style="text-align: center; margin-top: 20px;">
+                    *رسوم التخليص الجمركي بالمطار ثابتة: 320 رينجت ماليزي (أيام العمل) و 370 رينجت ماليزي (عطلات نهاية الأسبوع والعطلات الرسمية).
+                </p>
+            </div>
+        </section>
+
+        <section class="cta-banner hidden">
+            <div class="section-container">
+                <h2>جاهز لبدء رحلتك مع ELIT؟</h2>
+                <p>تواصل معنا اليوم وسنساعدك في كل خطوة نحو تحقيق حلمك بالدراسة في ماليزيا.</p>
+                <a href="tel:+60183848634" class="button">سجل الآن!</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

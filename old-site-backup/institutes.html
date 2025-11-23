@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معاهد اللغة - Afaq</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .main-content .section-container {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .institutes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 40px 0;
+        }
+
+        .institute-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 5px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .institute-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .institute-card .institute-logo {
+            margin-bottom: 25px;
+            min-height: 100px; /* لضمان ارتفاع موحد للشعارات */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .institute-card .institute-logo img {
+            max-width: 180px;
+            max-height: 90px; /* للتحكم في ارتفاع الشعارات */
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+
+        .institute-card:hover .institute-logo img {
+            filter: grayscale(0%);
+        }
+
+        .institute-card h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+        }
+
+        .institute-card p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 25px;
+            flex-grow: 1; /* لجعل الوصف يأخذ المساحة المتاحة ويدفع الزر للأسفل */
+        }
+
+        .institute-card .details-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .institute-card .details-button:hover {
+            background-color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* Animations */
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+            .page-header p {
+                font-size: 1.1em;
+            }
+            .institutes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+                padding: 30px 0;
+            }
+            .institute-card {
+                padding: 25px;
+            }
+            .institute-card h3 {
+                font-size: 1.8em;
+            }
+            .institute-card p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2em;
+            }
+            .page-header p {
+                font-size: 0.9em;
+            }
+            .institutes-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 25px 0;
+            }
+            .institute-card {
+                padding: 20px;
+            }
+            .institute-card .institute-logo img {
+                max-width: 150px;
+            }
+            .institute-card h3 {
+                font-size: 1.6em;
+            }
+            .institute-card p {
+                font-size: 0.95em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>معاهد اللغة المعتمدة</h1>
+            <p>اختر من بين أفضل معاهد اللغة الإنجليزية في ماليزيا التي نوفر التسجيل بها.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="section-container">
+            <div class="institutes-grid">
+
+                <div class="institute-card hidden">
+                    <div class="institute-logo">
+                        <img src="images/ems-logo.png" alt="EMS Logo">
+                    </div>
+                    <h3>EMS Language Centre</h3>
+                    <p>"English Made Simple" - تعلم الإنجليزية ببساطة. معهد معتمد وموقع مركزي.</p>
+                    <a href="ems.html" class="details-button">عرض التفاصيل والأسعار</a>
+                </div>
+
+                <div class="institute-card hidden">
+                    <div class="institute-logo">
+                        <img src="images/bright-logo.png" alt="Bright Logo">
+                    </div>
+                    <h3>Bright Language Center</h3>
+                    <p>"Let's Brighten Your Future!" - لنجعل مستقبلك مشرقاً. بيئة تعليمية محفزة.</p>
+                    <a href="bright.html" class="details-button">عرض التفاصيل والأسعار</a>
+                </div>
+
+                <div class="institute-card hidden">
+                    <div class="institute-logo">
+                        <img src="images/erican-logo.png" alt="Erican Logo">
+                    </div>
+                    <h3>Erican</h3>
+                    <p>مركز معتمد من IDP لتقديم اختبار الآيلتس. تاريخ طويل من التميز التعليمي.</p>
+                    <a href="erican.html" class="details-button">عرض التفاصيل والأسعار</a>
+                </div>
+
+                <div class="institute-card hidden">
+                    <div class="institute-logo">
+                        <img src="images/sheffield-logo.jpeg" alt="Sheffield Logo">
+                    </div>
+                    <h3>Sheffield Academy</h3>
+                    <p>برامج متنوعة تشمل اللغة، إدارة الأعمال، والضيافة. تعليم شامل.</p>
+                    <a href="sheffield.html" class="details-button">عرض التفاصيل والأسعار</a>
+                </div>
+
+                <div class="institute-card hidden">
+                    <div class="institute-logo">
+                        <img src="images/elec-logo.jpeg" alt="ELEC Logo">
+                    </div>
+                    <h3>ELEC Language Centre</h3>
+                    <p>المركز الأول للغة الإنجليزية باللهجة الأمريكية. تعليم فعال.</p>
+                    <a href="elec.html" class="details-button">عرض التفاصيل والأسعار</a>
+                </div>
+
+                <div class="institute-card hidden">
+                    <div class="institute-logo">
+                        <img src="images/elit-logo.png" alt="Elit Logo">
+                    </div>
+                    <h3>Elit Language Centre</h3>
+                    <p>حيث تأخذك اللغة الإنجليزية إلى أبعد مما تتخيل. برامج متطورة.</p>
+                    <a href="elit.html" class="details-button">عرض التفاصيل والأسعار</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheffield Academy - آفاق</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .info-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Table Styling (General for Offers and Intake) */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .data-table th, .data-table td {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .data-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+        .data-table td.highlight {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+        }
+        
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-banner .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-banner .button:hover {
+            background-color: #FBC02D;
+            transform: translateY(-3px);
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* Course Details Section - Specific to Sheffield's Programs */
+        .sheffield-programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .sheffield-program-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sheffield-program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .sheffield-program-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .sheffield-program-card p {
+            font-size: 1.05em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .sheffield-program-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sheffield-program-card ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .sheffield-program-card ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Combined Pricing Table for Sheffield */
+        .sheffield-pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .sheffield-pricing-table th, .sheffield-pricing-table td {
+            padding: 12px 10px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 0.95em;
+        }
+
+        .sheffield-pricing-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        .sheffield-pricing-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .sheffield-pricing-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+        .sheffield-pricing-table td.duration {
+            font-weight: bold;
+            color: var(--dark-bg);
+            text-align: right;
+        }
+
+        .sheffield-pricing-table td.price-value {
+            color: #333;
+        }
+        
+        .sheffield-pricing-table td.total-price {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+            text-align: center;
+            background-color: #FFF9C4;
+        }
+        
+        .sheffield-pricing-table .note {
+            font-size: 0.8em;
+            color: #666;
+            padding-top: 5px;
+        }
+        
+        /* Specific offers grid */
+        .sheffield-offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .sheffield-offer-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-top: 5px solid var(--secondary-color); /* Use secondary color for offer highlights */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sheffield-offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .sheffield-offer-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+        .sheffield-offer-card .offer-price {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--dark-red-highlight);
+            margin-top: 15px;
+        }
+
+        /* Intake table for Sheffield (like EMS) */
+        .sheffield-intake-table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .sheffield-intake-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .sheffield-intake-table th, .sheffield-intake-table td {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .sheffield-intake-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .sheffield-intake-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .sheffield-intake-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8em;
+            }
+            .page-header p {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .info-grid, .sheffield-programs-grid, .sheffield-offers-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .data-table th, .data-table td,
+            .sheffield-intake-table th, .sheffield-intake-table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .sheffield-pricing-table th, .sheffield-pricing-table td {
+                padding: 8px 5px;
+                font-size: 0.85em;
+            }
+            .cta-banner h2 {
+                font-size: 2.5em;
+            }
+            .cta-banner p {
+                font-size: 1.2em;
+            }
+            .cta-banner .button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .info-grid, .sheffield-programs-grid, .sheffield-offers-grid {
+                grid-template-columns: 1fr;
+            }
+            .data-table th, .data-table td,
+            .sheffield-intake-table th, .sheffield-intake-table td {
+                font-size: 0.8em;
+            }
+            .sheffield-pricing-table th, .sheffield-pricing-table td {
+                font-size: 0.7em;
+                padding: 6px 4px;
+            }
+            .sheffield-pricing-table th:nth-child(2),
+            .sheffield-pricing-table td:nth-child(2),
+            .sheffield-pricing-table th:nth-child(3),
+            .sheffield-pricing-table td:nth-child(3) {
+                display: none; /* Hide fee and registration on very small screens for better fit */
+            }
+            .cta-banner h2 {
+                font-size: 1.8em;
+            }
+            .cta-banner p {
+                font-size: 1.1em;
+            }
+            .cta-banner .button {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                       <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>معهد Sheffield Academy</h1>
+            <p>Sheffield Academy: نساعدك على تحقيق أهدافك التعليمية في قلب كوالالمبور.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section about-sheffield hidden">
+            <div class="section-container">
+                <h2>عن أكاديمية شيفيلد</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">📍</div>
+                        <h3>موقع استراتيجي</h3>
+                        <p>تقع أكاديمية شيفيلد في المثلث الذهبي، قلب مدينة كوالالمبور الجميلة.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">✨</div>
+                        <h3>تميز منذ 2010</h3>
+                        <p>ملتزمون بتقديم خدمات تعليمية وتدريب ممتازة منذ تأسيسها في أوائل عام 2010.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🏆</div>
+                        <h3>برنامج اللغة الإنجليزية الأقوى</h3>
+                        <p>يشتهر برنامجها للغة الإنجليزية بكونه أحد أفضل مراكز اللغة في كوالالمبور، ماليزيا.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section sheffield-programs hidden">
+            <div class="section-container">
+                <h2>برامجنا التعليمية</h2>
+                <div class="sheffield-programs-grid">
+                    <div class="sheffield-program-card">
+                        <h3>اللغة الإنجليزية العامة المكثفة (IGE)</h3>
+                        <p>الخيار المثالي للطلاب الذين يرغبون في تحقيق نتائج أسرع وأكثر عمقًا في تعلم اللغة الإنجليزية.</p>
+                        <ul>
+                            <li>أطول ساعات دراسية</li>
+                            <li>معلمون مؤهلون</li>
+                            <li>حجم الفصول صغير</li>
+                            <li>رسوم معقولة</li>
+                            <li>بيئة دولية</li>
+                            <li>أفضل موقع</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>دورة التحضير لاختبار IELTS</h3>
+                        <p>دورة تحضير IELTS التي حافظت على معدل نجاح مرتفع على مدار العقد الماضي، مع توجيه من معلمين ذوي خبرة.</p>
+                        <ul>
+                            <li>مهارات الاستماع، القراءة، الكتابة، والتحدث</li>
+                            <li>التركيز على القواعد والأنشطة</li>
+                            <li>معدل نجاح عالٍ</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>اللغة الإنجليزية للأغراض الأكاديمية (EAP)</h3>
+                        <p>مصممة بدقة لإعدادك للتعليم العالي في ماليزيا ودول أخرى، وتوفر المهارات اللغوية والأكاديمية والثقافية الأساسية.</p>
+                        <ul>
+                            <li>تطوير المهارات الأكاديمية</li>
+                            <li>التركيز على مواد محددة</li>
+                            <li>فرص أكاديمية عالمية</li>
+                            <li>مسار للجامعة</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>دروس نهاية الأسبوع</h3>
+                        <p>مصممة للأفراد ذوي الجداول المزدحمة خلال أيام الأسبوع ولكن لديهم وقت في عطلات نهاية الأسبوع، وتوفر المرونة لدمج دروس اللغة الإنجليزية.</p>
+                        <ul>
+                            <li>مرونة في الجداول</li>
+                            <li>للحياة اليومية والعمل والامتحانات</li>
+                            <li>توفر الوقت وتجنب أوقات الذروة</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>دروس خاصة</h3>
+                        <p>توفر هذه الدورة مرونة أكبر مع تعليم فردي، مما يسمح بتخصيص الدروس لاحتياجاتك وأهدافك المحددة.</p>
+                        <ul>
+                            <li>دروس مخصصة بالكامل</li>
+                            <li>تعليم فردي</li>
+                            <li>تركيز على أهدافك (مثل الإنجليزية للأعمال)</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>معسكرات الصيف والشتاء</h3>
+                        <p>فرصة فريدة لاستكشاف معالم ماليزيا مع الاستفادة من برامج التعلم المركزة، وتنظيم الأنشطة الثقافية والترفيهية.</p>
+                        <ul>
+                            <li>بيئة دولية</li>
+                            <li>فصول صغيرة</li>
+                            <li>إقامة مريحة</li>
+                            <li>جولات ورحلات شيقة</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>دروس عبر الإنترنت</h3>
+                        <p>تتضمن تسجيلات فيديو ومحاضرات حية، بالإضافة إلى مواد قراءة وتقييمات، مما يوفر مرونة في التعلم.</p>
+                        <ul>
+                            <li>مرونة التعلم</li>
+                            <li>الوصول إلى المواد التعليمية عبر الإنترنت</li>
+                            <li>تفاعل مع المدرسين والزملاء</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>إدارة الأعمال</h3>
+                        <p>توفر معرفة شاملة في مجالات الإدارة والتسويق والاتصال والمالية، مما يزودك بالمهارات اللازمة لفرص العمل.</p>
+                        <ul>
+                            <li>قيادة وإدارة الأفراد</li>
+                            <li>تحليل مقاييس الموارد البشرية</li>
+                            <li>إدارة المخاطر</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>تكنولوجيا المعلومات</h3>
+                        <p>تهدف إلى تلبية احتياجات الطلاب بمستويات مختلفة، مع التركيز على تطوير الكفاءات العملية والتقنية.</p>
+                        <ul>
+                            <li>البرمجة المرئية</li>
+                            <li>تصميم الويب</li>
+                            <li>تطوير الأنظمة</li>
+                        </ul>
+                    </div>
+                    <div class="sheffield-program-card">
+                        <h3>إدارة الضيافة</h3>
+                        <p>تهدف إلى تزويد الطلاب بالمهارات والمعرفة العملية اللازمة لأداء المهام التشغيلية في مختلف جوانب صناعة الضيافة.</p>
+                        <ul>
+                            <li>مراقبة العمليات</li>
+                            <li>إدارة التنوع في مكان العمل</li>
+                            <li>خدمات الطعام والمشروبات</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section sheffield-intake-dates hidden">
+            <div class="section-container">
+                <h2>مواعيد بدء الدفعات لعام 2025</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">
+                    يمكن للطلاب التقديم في أي وقت من الشهر، وتبدأ الدراسة في بداية كل شهر.
+                </p>
+                <div class="sheffield-intake-table-wrapper">
+                    <table class="sheffield-intake-table">
+                        <thead>
+                            <tr>
+                                <th>الشهر</th>
+                                <th>تاريخ البدء</th>
+                                <th>العطل الرسمية</th>
+                                <th>تاريخ الانتهاء</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>يناير</td>
+                                <td>6 يناير</td>
+                                <td>24 يناير, 25 يناير</td>
+                                <td>28 يناير</td>
+                            </tr>
+                            <tr>
+                                <td>فبراير</td>
+                                <td>3 فبراير</td>
+                                <td></td>
+                                <td>24 فبراير</td>
+                            </tr>
+                            <tr>
+                                <td>مارس</td>
+                                <td>3 مارس</td>
+                                <td>25 مارس</td>
+                                <td>24 مارس</td>
+                            </tr>
+                            <tr>
+                                <td>أبريل</td>
+                                <td>7 أبريل</td>
+                                <td></td>
+                                <td>28 أبريل</td>
+                            </tr>
+                            <tr>
+                                <td>مايو</td>
+                                <td>5 مايو</td>
+                                <td>1 مايو, 22 مايو</td>
+                                <td>26 مايو</td>
+                            </tr>
+                            <tr>
+                                <td>يونيو</td>
+                                <td>2 يونيو</td>
+                                <td>16 يونيو</td>
+                                <td>23 يونيو</td>
+                            </tr>
+                            <tr>
+                                <td>يوليو</td>
+                                <td>7 يوليو</td>
+                                <td></td>
+                                <td>28 يوليو</td>
+                            </tr>
+                            <tr>
+                                <td>أغسطس</td>
+                                <td>4 أغسطس</td>
+                                <td></td>
+                                <td>25 أغسطس</td>
+                            </tr>
+                            <tr>
+                                <td>سبتمبر</td>
+                                <td>1 سبتمبر</td>
+                                <td>16 سبتمبر</td>
+                                <td>22 سبتمبر</td>
+                            </tr>
+                            <tr>
+                                <td>أكتوبر</td>
+                                <td>6 أكتوبر</td>
+                                <td></td>
+                                <td>27 أكتوبر</td>
+                            </tr>
+                            <tr>
+                                <td>نوفمبر</td>
+                                <td>3 نوفمبر</td>
+                                <td></td>
+                                <td>24 نوفمبر</td>
+                            </tr>
+                            <tr>
+                                <td>ديسمبر</td>
+                                <td>8 ديسمبر</td>
+                                <td>25 ديسمبر</td>
+                                <td>22 ديسمبر</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <p style="font-size: 0.9em; text-align: center; margin-top: 30px; color: #666;">
+                    ملاحظة: تظهر تواريخ بدء الدفعة الجديدة، العطل الرسمية، ونهاية الدفعة في التقويم أعلاه بترميزات ألوان محددة.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section sheffield-prices hidden">
+            <div class="section-container">
+                <h2>رسوم برامج أكاديمية شيفيلد لعام 2025</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">جميع الأسعار بالرينجت الماليزي (RM).</p>
+
+                <h3>الرسوم الإجمالية للغة الإنجليزية العامة المكثفة (IGE)</h3>
+                <div class="table-wrapper">
+                    <table class="sheffield-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>رسوم الدراسة (RM)</th>
+                                <th>رسوم التسجيل (RM)</th>
+                                <th>رسوم الفيزا (RM) (6 أشهر)</th>
+                                <th>رسوم الفيزا (RM) (سنة)</th>
+                                <th>رسوم التأمين (RM)</th>
+                                <th>المجموع (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="duration">1 شهر</td>
+                                <td class="price-value">2,500</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="total-price">3,000</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">2 أشهر</td>
+                                <td class="price-value">5,000</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="total-price">5,500</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">3 أشهر</td>
+                                <td class="price-value">7,500</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="total-price">8,000</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">4 أشهر</td>
+                                <td class="price-value">10,000</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">13,550</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">5 أشهر</td>
+                                <td class="price-value">12,500</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">16,050</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">6 أشهر</td>
+                                <td class="price-value">15,000</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">18,550</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">7 أشهر</td>
+                                <td class="price-value">17,500</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">21,050</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">8 أشهر</td>
+                                <td class="price-value">20,000</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">23,550</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">9 أشهر</td>
+                                <td class="price-value">22,500</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">26,050</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">10 أشهر</td>
+                                <td class="price-value">25,000</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">28,550</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">11 شهرًا</td>
+                                <td class="price-value">27,500</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">31,050</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">12 شهرًا</td>
+                                <td class="price-value">30,000</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">N/A</td>
+                                <td class="price-value">2,250</td>
+                                <td class="price-value">800</td>
+                                <td class="total-price">33,550</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px;">عروض أكاديمية شيفيلد الخاصة بـ IGE (2025)</h3>
+                <div class="sheffield-offers-grid">
+                    <div class="sheffield-offer-card">
+                        <h3>سجل 2 أشهر واحصل على 1 شهر مجانًا</h3>
+                        <p>باقة 2 + 1 أشهر</p>
+                        <div class="offer-price">5,500 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">يشمل رسوم التسجيل، الفيزا، والتأمين الصحي.</p>
+                    </div>
+                    <div class="sheffield-offer-card">
+                        <h3>سجل 5 أشهر واحصل على 1 شهر مجانًا</h3>
+                        <p>باقة 5 + 1 شهر</p>
+                        <div class="offer-price">16,050 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">يشمل فيزا 6 أشهر ورسوم التسجيل والتأمين الصحي.</p>
+                    </div>
+                    <div class="sheffield-offer-card">
+                        <h3>سجل 8 أشهر واحصل على 2 أشهر مجانًا</h3>
+                        <p>باقة 8 + 2 أشهر</p>
+                        <div class="offer-price">23,550 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">يشمل فيزا 12 شهر ورسوم التسجيل والتأمين الصحي.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 40px;">رسوم الدورات الأخرى</h3>
+                <div class="info-grid">
+                    <div class="info-card" style="border-top-color: var(--secondary-color);">
+                        <h3>ورشة العمل (Workshop)</h3>
+                        <p>دورة شهر واحد.</p>
+                        <div class="offer-price">2,000 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">(يشمل رسوم الدراسة والتسجيل)</p>
+                    </div>
+                    <div class="info-card" style="border-top-color: var(--secondary-color);">
+                        <h3>دورة التحضير لاختبار IELTS</h3>
+                        <p>دورة شهر واحد.</p>
+                        <div class="offer-price">3,000 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">(يشمل رسوم الدراسة والتسجيل)</p>
+                    </div>
+                    <div class="info-card" style="border-top-color: var(--secondary-color);">
+                        <h3>إدارة الأعمال (12 شهرًا)</h3>
+                        <p>برنامج شامل في إدارة الأعمال.</p>
+                        <div class="offer-price">17,950 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">(يشمل الدراسة، التسجيل، الفيزا، التأمين)</p>
+                    </div>
+                    <div class="info-card" style="border-top-color: var(--secondary-color);">
+                        <h3>إدارة الضيافة (12 شهرًا)</h3>
+                        <p>برنامج يركز على صناعة الضيافة.</p>
+                        <div class="offer-price">17,950 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">(يشمل الدراسة، التسجيل، الفيزا، التأمين)</p>
+                    </div>
+                     <div class="info-card" style="border-top-color: var(--secondary-color);">
+                        <h3>تكنولوجيا المعلومات (12 شهرًا)</h3>
+                        <p>برنامج في مجالات تكنولوجيا المعلومات.</p>
+                        <div class="offer-price">17,950 رينجت</div>
+                        <p style="font-size:0.9em; color:#777; margin-top:10px;">(يشمل الدراسة، التسجيل، الفيزا، التأمين)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section visa-requirements hidden">
+            <div class="section-container">
+                <h2>متطلبات التأشيرة الدراسية</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">📄</div>
+                        <h3>جواز سفر دولي</h3>
+                        <p>بصلاحية لا تقل عن 18 شهرًا.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📸</div>
+                        <h3>صورة جواز السفر</h3>
+                        <p>خلفية بيضاء، بمقاس 45 مم × 35 مم.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📜</div>
+                        <h3>شهادة الثانوية العامة وكشف الدرجات</h3>
+                        <p>النسخة الأصلية ومترجمة إلى الإنجليزية.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🩺</div>
+                        <h3>نموذج الإقرار الصحي</h3>
+                        <p>نموذج صحي معبأ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner hidden">
+            <div class="section-container">
+                <h2>جاهز لبدء رحلتك في Sheffield Academy؟</h2>
+                <p>تواصل معنا اليوم وسنساعدك في كل خطوة نحو تحقيق حلمك بالدراسة في ماليزيا.</p>
+                <a href="tel:+60183848634" class="button">سجل الآن!</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                   <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

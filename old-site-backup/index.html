@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afaq - بوابتك للدراسة في ماليزيا</title>
+    <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        /* Hero Section - تصميم جديد */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 600px; /* ارتفاع ثابت لشريط التمرير */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex; /* لعرض الشرائح جنبًا إلى جنب */
+            transition: transform 0.8s ease-in-out; /* حركة سلاسة للشرائح */
+            /* تأكد أن الشرائح كلها بعرض 100% وستتحرك داخل الـ slider-container */
+        }
+
+        .slide {
+            min-width: 100%; /* كل شريحة تأخذ عرض الحاوية بالكامل */
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0; /* لمنع تقلص الشرائح */
+            position: relative;
+        }
+
+        .slide::after { /* طبقة تراكبية داكنة لتوضيح النص */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* طبقة شفافة داكنة */
+        }
+
+        .hero-content {
+            position: relative; /* لجعل المحتوى فوق الشريحة */
+            z-index: 10;
+            padding: 20px;
+            max-width: 800px;
+            animation: fadeInScale 1s ease-out forwards;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800; /* أثقل للعنوان الرئيسي */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .hero-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-button:hover {
+            background-color: #FBC02D; /* درجة أغمق للأصفر عند التمرير */
+            transform: translateY(-3px);
+        }
+
+        /* تم حذف الأسهم، لذلك هذه الأنماط لم تعد مستخدمة */
+        .arrow {
+            display: none;
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 80px 0; /* زيادة المسافة الرأسية */
+            margin-bottom: 30px;
+            border-radius: 8px;
+            background-color: white; /* خلفية بيضاء للأقسام */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* ظل أنعم */
+        }
+
+        .content-section:nth-of-type(odd) { /* خلفية فاتحة للتبادل */
+            background-color: var(--light-bg);
+        }
+        .content-section:nth-of-type(even) {
+            background-color: #fff;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.8em; /* أكبر قليلاً */
+            color: var(--dark-bg); /* لون العنوان الداكن */
+            margin-bottom: 60px; /* مسافة أكبر أسفل العنوان */
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px; /* أبعد قليلاً */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* أعرض قليلاً */
+            height: 4px; /* أسمك قليلاً */
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        /* Partners Section */
+        .partners .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .partners .partner-logo {
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .partners .partner-logo:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .partners .partner-logo img {
+            max-width: 120px; /* حجم ثابت للشعارات */
+            height: auto;
+            filter: grayscale(80%); /* لجعل الشعارات تبدو موحدة أكثر */
+            transition: filter 0.3s ease;
+        }
+
+        .partners .partner-logo:hover img {
+            filter: grayscale(0%); /* تلوين الشعار عند التمرير */
+        }
+
+        /* Why Afaq Section (New) */
+        .why-afaq .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .why-afaq .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 5px solid var(--primary-color); /* حد سفلي مميز */
+        }
+
+        .why-afaq .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .why-afaq .feature-card .icon {
+            font-size: 4em; /* أيقونات أكبر */
+            color: var(--secondary-color); /* لون الأيقونة المميز */
+            margin-bottom: 25px;
+            display: inline-block;
+            background-color: var(--primary-color); /* خلفية للأيقونة */
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* لون الأيقونة أبيض */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .why-afaq .feature-card h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+        }
+
+        .why-afaq .feature-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Why Malaysia Section (Adjusted) */
+        .why-malaysia .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .why-malaysia .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 5px solid var(--primary-color); /* حد سفلي مميز */
+        }
+
+        .why-malaysia .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .why-malaysia .feature-card .icon {
+            font-size: 4em; /* أيقونات أكبر */
+            color: var(--secondary-color); /* لون الأيقونة المميز */
+            margin-bottom: 25px;
+            display: inline-block;
+            background-color: var(--primary-color); /* خلفية للأيقونة */
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* لون الأيقونة أبيض */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .why-malaysia .feature-card h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+        }
+
+        .why-malaysia .feature-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Enrollment Steps Section (New) */
+        .enrollment-steps .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            counter-reset: step-counter; /* لإضافة الأرقام تلقائيًا */
+        }
+
+        .enrollment-steps .step-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            padding-top: 80px; /* مسافة للرقم */
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .enrollment-steps .step-card::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            top: -25px; /* يبرز فوق البطاقة */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2em;
+            font-weight: 700;
+            border: 4px solid white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .enrollment-steps .step-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .enrollment-steps .step-card p {
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        /* Admission and Visa Section (New on Index) */
+        .admission-visa-section .process-step {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-top: 5px solid var(--primary-color);
+        }
+        .admission-visa-section .process-step h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .admission-visa-section .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .admission-visa-section .step-list li {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            color: #444;
+            position: relative;
+            padding-right: 45px;
+            min-height: 60px;
+        }
+        .admission-visa-section .step-list li:nth-child(odd) {
+            background-color: #f0f4f7;
+        }
+        .admission-visa-section .step-list li::before {
+            content: attr(data-step-number); /* Use data attribute for step number */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .admission-visa-section .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .admission-visa-section .requirement-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+        .admission-visa-section .requirement-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .admission-visa-section .requirement-card h4 {
+            font-size: 1.5em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+        .admission-visa-section .requirement-card p {
+            font-size: 1em;
+            color: #555;
+        }
+
+
+        /* Top Offers Section */
+        .top-offers .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .top-offers .offer-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--light-bg);
+        }
+
+        .top-offers .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .top-offers .offer-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .top-offers .offer-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .top-offers .offer-content h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .top-offers .offer-content p {
+            font-size: 1.05em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .top-offers .offer-content .price {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--dark-red-highlight); /* لون مميز للسعر */
+            margin-bottom: 25px;
+        }
+
+        .top-offers .offer-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .top-offers .offer-button:hover {
+            background-color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        /* Call to Action Banner */
+        .cta-banner-home {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 60px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner-home h2 {
+            font-size: 3.2em;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .cta-banner-home p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-banner-home .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 18px 50px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-size: 1.4em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-banner-home .button:hover {
+            background-color: #FBC02D;
+            transform: translateY(-5px);
+        }
+
+
+        /* Animations */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+            .hero-content p {
+                font-size: 1.2em;
+            }
+            .hero-button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .why-afaq .feature-card,
+            .why-malaysia .feature-card {
+                padding: 30px;
+            }
+            .why-afaq .feature-card .icon,
+            .why-malaysia .feature-card .icon {
+                font-size: 3.5em;
+                width: 80px;
+                height: 80px;
+            }
+            .why-afaq .feature-card h3,
+            .why-malaysia .feature-card h3 {
+                font-size: 1.6em;
+            }
+            .enrollment-steps .step-card::before {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8em;
+                top: -20px;
+            }
+            .enrollment-steps .step-card {
+                padding-top: 70px;
+            }
+            .admission-visa-section .step-list li {
+                font-size: 1em;
+                padding-right: 40px;
+                min-height: 50px;
+            }
+            .admission-visa-section .step-list li::before {
+                width: 25px;
+                height: 25px;
+                font-size: 0.8em;
+            }
+            .admission-visa-section .requirement-card h4 {
+                font-size: 1.3em;
+            }
+            .top-offers .offer-content h3 {
+                font-size: 1.6em;
+            }
+            .top-offers .offer-content .price {
+                font-size: 1.6em;
+            }
+            .cta-banner-home h2 {
+                font-size: 2.5em;
+            }
+            .cta-banner-home p {
+                font-size: 1.2em;
+            }
+            .cta-banner-home .button {
+                padding: 15px 40px;
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 500px;
+            }
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .arrow {
+                padding: 10px 7px;
+                font-size: 1.2em;
+            }
+            .content-section {
+                padding: 50px 0;
+            }
+            .content-section h2 {
+                font-size: 2em;
+                margin-bottom: 40px;
+            }
+            .partners .logo-grid,
+            .why-afaq .features-grid,
+            .why-malaysia .features-grid,
+            .enrollment-steps .steps-grid,
+            .admission-visa-section .step-list,
+            .admission-visa-section .requirements-grid,
+            .top-offers .offers-grid {
+                grid-template-columns: 1fr;
+            }
+            .why-afaq .feature-card .icon,
+            .why-malaysia .feature-card .icon {
+                font-size: 3em;
+                width: 70px;
+                height: 70px;
+            }
+            .why-afaq .feature-card h3,
+            .why-malaysia .feature-card h3 {
+                font-size: 1.4em;
+            }
+            .enrollment-steps .step-card::before {
+                width: 45px;
+                height: 45px;
+                font-size: 1.6em;
+                top: -15px;
+            }
+            .enrollment-steps .step-card {
+                padding-top: 60px;
+            }
+            .admission-visa-section .process-step {
+                padding: 30px 20px;
+            }
+            .admission-visa-section .step-list li {
+                font-size: 0.9em;
+                padding-right: 35px;
+                min-height: 45px;
+            }
+            .admission-visa-section .step-list li::before {
+                width: 22px;
+                height: 22px;
+                font-size: 0.7em;
+            }
+            .admission-visa-section .requirement-card {
+                padding: 20px;
+            }
+            .admission-visa-section .requirement-card .icon {
+                font-size: 2.5em;
+            }
+            .admission-visa-section .requirement-card h4 {
+                font-size: 1.2em;
+            }
+            .top-offers .offer-image {
+                height: 180px;
+            }
+            .top-offers .offer-content {
+                padding: 20px;
+            }
+            .cta-banner-home h2 {
+                font-size: 1.8em;
+            }
+            .cta-banner-home p {
+                font-size: 1em;
+            }
+            .cta-banner-home .button {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="hero">
+        <div class="slider-container">
+            <div class="slide" style="background-image: url('images/KL3.jpg');"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1>افتح آفاق مستقبلك. ادرس الإنجليزية في ماليزيا.</h1>
+            <p>نحن في 'آفاق' نساعدك في كل خطوة، من التسجيل في أفضل المعاهد وحتى إيجاد السكن المناسب.</p>
+            <a href="tel:+60183848634" class="hero-button">ابدأ رحلتك الآن</a>
+        </div>
+    </section>
+
+    <section class="why-afaq content-section hidden">
+        <div class="section-container">
+            <h2>ما الذي يميز آفاق؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">🤝</div>
+                    <h3>دعم شامل ومجاني</h3>
+                    <p>نرافقك في كل خطوة، من تسهيل قبولك وحتى استقرارك في ماليزيا، وخدماتنا مجانية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🏠</div>
+                    <h3>مساعدة في السكن</h3>
+                    <p>نساعدك في إيجاد السكن المناسب لك قبل وصولك إلى ماليزيا لتبدأ دراستك براحة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📱</div>
+                    <h3>شريحة إنترنت مجانية</h3>
+                    <p>استلم شريحة اتصال مع شهر إنترنت مجاني فور وصولك لمطار ماليزيا لتبقى متصلاً.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔗</div>
+                    <h3>شراكات قوية</h3>
+                    <p>علاقاتنا المباشرة مع أفضل المعاهد تضمن لك الحصول على أفضل البرامج والعروض الحصرية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners content-section hidden">
+        <div class="section-container">
+            <h2>شركاؤنا من أفضل معاهد اللغة في ماليزيا</h2>
+            <div class="logo-grid">
+                <div class="partner-logo"><img src="images/ems-logo.png" alt="EMS Logo"></div>
+                <div class="partner-logo"><img src="images/bright-logo.png" alt="Bright Logo"></div>
+                <div class="partner-logo"><img src="images/erican-logo.png" alt="Erican Logo"></div>
+                <div class="partner-logo"><img src="images/sheffield-logo.jpeg" alt="Sheffield Logo"></div>
+                <div class="partner-logo"><img src="images/elec-logo.jpeg" alt="ELEC Logo"></div>
+                <div class="partner-logo"><img src="images/elit-logo.png" alt="Elit Logo"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-malaysia content-section hidden">
+        <div class="section-container">
+            <h2>لماذا تختار الدراسة في ماليزيا؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">🎓</div>
+                    <h3>جودة تعليم معتمدة</h3>
+                    <p>جميع معاهد اللغة التي نتعامل معها معترف بها من قبل وزارة التعليم الماليزية، مما يضمن لك الحصول على تعليم عالي الجودة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💰</div>
+                    <h3>تكاليف مناسبة</h3>
+                    <p>تعتبر تكاليف الدراسة والمعيشة في ماليزيا منخفضة بشكل ملحوظ مقارنة بالدول الغربية، مما يجعلها وجهة مثالية للطلاب.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌍</div>
+                    <h3>بيئة متعددة الثقافات وآمنة</h3>
+                    <p>استمتع بالعيش في بلد آمن ومرحب يجمع بين الثقافات الآسيوية المتنوعة، مع سهولة الحصول على الأكل الحلال.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section admission-visa-section hidden">
+        <div class="section-container">
+            <h2>دليلك الشامل للتسجيل في ماليزيا</h2>
+
+            <div class="process-step">
+                <h3>عملية القبول للطلاب الذين يحتاجون إلى تأشيرة دراسية</h3>
+                <ul class="step-list">
+                    <li data-step-number="1">املأ نموذج الطلب وقدم الوثائق المطلوبة (جواز السفر، الشهادات الأكاديمية، الفحص الطبي، الصور الشخصية).</li>
+                    <li data-step-number="2">ادفع رسوم التسجيل ورسوم معالجة التأشيرة (تشمل طلب تأشيرة EMGS).</li>
+                    <li data-step-number="3">تستغرق عملية معالجة التأشيرة والموافقة حوالي 4-6 أسابيع.</li>
+                    <li data-step-number="4">عند الوصول، يتم التخليص الجمركي في المطار. خدمة الاستقبال من المطار متوفرة.</li>
+                    <li data-step-number="5">سدد رسوم الدورة المتبقية قبل المضي قدماً في إجراءات التأشيرة الإضافية.</li>
+                    <li data-step-number="6">استكمل الفحص الطبي وقدم ملصق التأشيرة لإنهاء عملية التأشيرة.</li>
+                    <li data-step-number="7">احضر جلسة التوجيه وابدأ التعلم وفقًا لجدول الحصص المقدم.</li>
+                </ul>
+            </div>
+
+            <div class="process-step" style="margin-top: 40px;">
+                <h3>عملية القبول للطلاب الذين لا يحتاجون إلى تأشيرة دراسية</h3>
+                <ul class="step-list">
+                    <li data-step-number="1">املأ نموذج الطلب المتاح عبر الإنترنت أو شخصيًا.</li>
+                    <li data-step-number="2">قدم الوثائق المطلوبة (جواز السفر/الهوية، الشهادات الأكاديمية إن وجدت).</li>
+                    <li data-step-number="3">ادفع رسوم التسجيل ورسوم الدورة عبر التحويل البنكي، بطاقة الائتمان/الخصم، أو شخصيًا.</li>
+                    <li data-step-number="4">اجتياز اختبار تحديد المستوى لتحديد مستواك قبل بدء الفصول.</li>
+                    <li data-step-number="5">ابدأ التعلم حسب الجدول الزمني المحدد.</li>
+                </ul>
+            </div>
+
+            <div class="process-step" style="margin-top: 40px;">
+                <h3>متطلبات طلب التأشيرة (الوثائق)</h3>
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <div class="icon">📸</div>
+                        <h4>صورة بحجم جواز السفر</h4>
+                        <p>صورة حديثة بخلفية بيضاء.</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="icon">🛂</div>
+                        <h4>جواز سفر كامل</h4>
+                        <p>صالح لمدة 18 شهرًا على الأقل من تاريخ التسجيل.</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="icon">📜</div>
+                        <h4>الشهادات الأكاديمية وكشوف الدرجات</h4>
+                        <p>نسخ من الشهادات الأصلية مع ترجمة رسمية للإنجليزية.</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="icon">🧾</div>
+                        <h4>إثبات التسجيل والدفع</h4>
+                        <p>إيصالات رسوم التسجيل ورسوم طلب التأشيرة.</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="icon">🩺</div>
+                        <h4>نموذج الإقرار الصحي</h4>
+                        <p>نموذج صحي معبأ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="enrollment-steps content-section hidden">
+        <div class="section-container">
+            <h2>خطوات سهلة للالتحاق بآفاق</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h3>تواصل معنا</h3>
+                    <p>تواصل مع فريق "آفاق" عبر الواتساب أو النموذج، وسنقوم بالرد على استفساراتك.</p>
+                </div>
+                <div class="step-card">
+                    <h3>اختر برنامجك</h3>
+                    <p>اختر المعهد والبرنامج الدراسي المناسب لك بمساعدة مستشارينا.</p>
+                </div>
+                <div class="step-card">
+                    <h3>أرسل الوثائق</h3>
+                    <p>ساعدنا في جمع وتجهيز الوثائق المطلوبة لتقديم طلب القبول والتأشيرة.</p>
+                </div>
+                <div class="step-card">
+                    <h3>ابدأ رحلتك</h3>
+                    <p>بمجرد الحصول على القبول والتأشيرة، كن مستعدًا لبدء مغامرتك التعليمية في ماليزيا!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="top-offers content-section hidden">
+        <div class="section-container">
+            <h2>أقوى العروض الحالية</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-image" style="background-image: url('images/ems-logo.png');"></div>
+                    <div class="offer-content">
+                        <h3>عرض 8 + 2 أشهر مجاناً + آيلتس</h3>
+                        <p>سجل لمدة 8 أشهر في معهد EMS واحصل على شهرين إضافيين وامتحان آيلتس مجاناً (شامل الفيزا والتأمين).</p>
+                        <div class="price">خاص عرض</div>
+                        <a href="ems.html" class="offer-button">عرض التفاصيل</a>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-image" style="background-image: url('images/bright-logo.png');"></div>
+                    <div class="offer-content">
+                        <h3>دورة آيلتس مجانية</h3>
+                        <p>عند تسجيلك لمدة 8 أشهر أو أكثر في معهد Bright، ستحصل على دورة تحضيرية لامتحان الآيلتس مجاناً.</p>
+                        <div class="price">عرض خاص</div>
+                        <a href="bright.html" class="offer-button">عرض التفاصيل</a>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-image" style="background-image: url('images/erican-logo.png');"></div>
+                    <div class="offer-content">
+                        <h3>عرض 9 + 3 أشهر مجاناً</h3>
+                        <p>سجل لمدة 9 أشهر في معهد Erican واحصل على 3 أشهر إضافية مجاناً.</p>
+                        <div class="price">   عرض خاص</div>
+                        <a href="#" class="offer-button">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner-home hidden">
+        <div class="section-container">
+            <h2>هل لديك أسئلة؟ نحن هنا لنجيبك!</h2>
+            <p>تواصل معنا اليوم ودعنا نساعدك في التخطيط لرحلتك التعليمية في ماليزيا.</p>
+            <a href="tel:+60183848634" class="button">تواصل معنا الآن</a>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                    <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // JavaScript for Hero Slider
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const sliderContainer = document.querySelector('.slider-container');
+            let currentIndex = 0; // البدء من الشريحة الأولى
+
+            function updateSlider() {
+                // نقل الـ sliderContainer إلى اليسار بمقدار currentIndex مضروبًا في 100%
+                sliderContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            // وظيفة للتقدم إلى الشريحة التالية (تُستخدم تلقائياً وعند النقر على الأسهم لو كانت موجودة)
+            function goToNextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlider();
+            }
+
+            // تم حذف أزرار الأسهم، لذلك لم تعد هناك حاجة لمستمعي الأحداث هذه
+            // nextArrow.addEventListener('click', goToNextSlide);
+            // prevArrow.addEventListener('click', () => {
+            //     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            //     updateSlider();
+            // });
+
+            // التشغيل التلقائي للشريط
+            setInterval(goToNextSlide, 5000); // تغيير الشريحة كل 5 ثوانٍ
+
+            // Intersection Observer for fade-in animations (لأقسام المحتوى الأخرى)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

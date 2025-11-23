@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Language Center - آفاق</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .info-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Table Styling (General for Offers and Intake) */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .data-table th, .data-table td {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .data-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+        .data-table td.highlight {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+        }
+        
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-banner .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-banner .button:hover {
+            background-color: #FBC02D;
+            transform: translateY(-3px);
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* Bright Programs Grid */
+        .bright-programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .bright-program-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bright-program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .bright-program-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .bright-program-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bright-program-card ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .bright-program-card ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Bright Combined Pricing Table */
+        .bright-combined-pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .bright-combined-pricing-table th, .bright-combined-pricing-table td {
+            padding: 12px 10px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 0.95em;
+        }
+
+        .bright-combined-pricing-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        .bright-combined-pricing-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .bright-combined-pricing-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+        .bright-combined-pricing-table td.duration {
+            font-weight: bold;
+            color: var(--dark-bg);
+            text-align: right;
+        }
+
+        .bright-combined-pricing-table td.price-value {
+            color: #333;
+        }
+        
+        .bright-combined-pricing-table td.total-price {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+            text-align: center;
+            background-color: #FFF9C4;
+        }
+        
+        .bright-combined-pricing-table .note {
+            font-size: 0.8em;
+            color: #666;
+            padding-top: 5px;
+        }
+
+        /* Special Offer Card for Bright */
+        .bright-special-offer {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            border-top: 5px solid var(--secondary-color);
+        }
+        .bright-special-offer h3 {
+            font-size: 2em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+        }
+        .bright-special-offer .offer-text {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .bright-special-offer .offer-highlight {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--dark-red-highlight);
+            margin-bottom: 20px;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8em;
+            }
+            .page-header p {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .info-grid, .bright-programs-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .data-table th, .data-table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .bright-combined-pricing-table th, .bright-combined-pricing-table td {
+                padding: 8px 5px;
+                font-size: 0.85em;
+            }
+            .cta-banner h2 {
+                font-size: 2.5em;
+            }
+            .cta-banner p {
+                font-size: 1.2em;
+            }
+            .cta-banner .button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .info-grid, .bright-programs-grid {
+                grid-template-columns: 1fr;
+            }
+            .data-table th, .data-table td {
+                font-size: 0.8em;
+            }
+            .bright-combined-pricing-table th, .bright-combined-pricing-table td {
+                font-size: 0.75em;
+                padding: 6px 4px;
+          }
+            .bright-combined-pricing-table th:nth-child(2),
+            .bright-combined-pricing-table td:nth-child(2),
+            .bright-combined-pricing-table th:nth-child(3),
+            .bright-combined-pricing-table td:nth-child(3) {
+                /* Consider hiding these if table is still too wide */
+            }
+            .cta-banner h2 {
+                font-size: 1.8em;
+            }
+            .cta-banner p {
+                font-size: 1.1em;
+            }
+            .cta-banner .button {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                <li><a href="restaurants.html">دليل المطاعم</a></li>
+                <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>معهد Bright Language Center</h1>
+            <p>Bright Language Center: لنجعل مستقبلك مشرقًا!</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section about-bright hidden">
+            <div class="section-container">
+                <h2>لماذا تختار Bright؟</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">✨</div>
+                        <h3>بيئة تعلم متعددة الثقافات</h3>
+                        <p>يستقبل طلابًا من أكثر من 45 جنسية سنويًا، مما يوفر تجربة تعلم غامرة.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🏆</div>
+                        <h3>سجل حافل بنجاح IELTS</h3>
+                        <p>معترف به للتميز من قبل وزارة التعليم الماليزية، ويفخر بسجل نجاح طلابه في IELTS.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📍</div>
+                        <h3>موقع رئيسي في كوالالمبور</h3>
+                        <p>يقع في قلب كوالالمبور، ويوفر فصولًا دراسية حديثة ومجهزة بألواح ذكية.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">💡</div>
+                        <h3>منهج تفاعلي وأنشطة جذابة</h3>
+                        <p>يتجاوز التعليم الفصول الدراسية مع رحلات شهرية وأنشطة واقعية لتطبيق المهارات اللغوية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bright-programs hidden">
+            <div class="section-container">
+                <h2>برامجنا التعليمية</h2>
+                <div class="bright-programs-grid">
+                    <div class="bright-program-card">
+                        <h3>اللغة الإنجليزية المكثفة</h3>
+                        <ul>
+                            <li>24 ساعة درس أسبوعية</li>
+                            <li>5 أيام في الأسبوع</li>
+                            <li>نادي التحدث (ساعة يوميًا في الأسبوع 2 و 3)</li>
+                            <li>تغطية شاملة للمهارات: تحدث، استماع، قراءة، كتابة، وقواعد</li>
+                            <li>معلمون ذوو خبرة ومؤهلون تأهيلاً عالياً</li>
+                            <li>فصول دراسية متعددة الثقافات ومجهزة تجهيزًا جيدًا</li>
+                        </ul>
+                    </div>
+                    <div class="bright-program-card">
+                        <h3>التحضير لاختبار IELTS</h3>
+                        <ul>
+                            <li>48 ساعة دروس + 16 ساعة دراسة ذاتية واختبارات تجريبية</li>
+                            <li>4 أيام في الأسبوع</li>
+                            <li>إتقان إدارة الوقت</li>
+                            <li>مجموعات دراسية صغيرة</li>
+                            <li>معلمون بخبرة تزيد عن 15 عامًا في IELTS</li>
+                            <li>اختبارات تجريبية مع ملاحظات شخصية</li>
+                            <li>استراتيجيات امتحان مثبتة</li>
+                            <li>درجات جيدة مضمونة</li>
+                        </ul>
+                    </div>
+                    <div class="bright-program-card">
+                        <h3>البرنامج عبر الإنترنت</h3>
+                        <ul>
+                            <li>تعلم في أي وقت وفي أي مكان</li>
+                            <li>فصول حية تفاعلية وتعاونية</li>
+                            <li>منصة سهلة الاستخدام</li>
+                            <li>صديق للمناطق الزمنية المختلفة</li>
+                            <li>دروس في الوقت الحقيقي مع مدربين خبراء</li>
+                            <li>جدول مرن ومخصص</li>
+                            <li>اهتمام شخصي</li>
+                        </ul>
+                    </div>
+                    <div class="bright-program-card">
+                        <h3>دروس خاصة</h3>
+                        <ul>
+                            <li>تعلم مخصص، تقدم أسرع</li>
+                            <li>تعليم عالي الجودة</li>
+                            <li>تعلم موجه نحو الأهداف</li>
+                            <li>نهج شخصي</li>
+                            <li>جدول مرن ومخصص</li>
+                            <li>اهتمام فردي (واحد لواحد)</li>
+                            <li>منهج مخصص</li>
+                        </ul>
+                    </div>
+                    <div class="bright-program-card">
+                        <h3>معسكرات الصيف والشتاء</h3>
+                        <ul>
+                            <li>برنامج مكثف للغة الإنجليزية</li>
+                            <li>دروس تفاعلية وأنشطة جذابة</li>
+                            <li>أنشطة خارجية مثيرة</li>
+                            <li>إقامة مريحة ووجبات</li>
+                            <li>اكتشاف مدينة كوالالمبور</li>
+                            <li>تكوين صداقات عالمية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bright-levels-structure hidden">
+            <div class="section-container">
+                <h2>هيكل برنامج اللغة الإنجليزية المكثفة والمستويات</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">
+                    تقدم Bright 12 مستوى تعليمي، مصممة لمساعدتك على التقدم في إتقان اللغة الإنجليزية.</p>
+                        <div class="levels-diagram-container">
+                    <div class="level-group level-beginner">
+                        <div class="level-header">
+                            <span class="level-name">Beginner</span>
+                            <span class="level-ielts">IELTS 3.0 - 3.5</span>
+                        </div>
+                        <div class="level-bar" style="width: 20%;"></div>
+                        <div class="level-description">الأساسيات الأولى في اللغة الإنجليزية.</div>
+                        <div class="level-indicator">Level 1 - 2</div>
+                    </div>
+                    <div class="level-group level-elementary">
+                        <div class="level-header">
+                            <span class="level-name">Elementary</span>
+                            <span class="level-ielts">IELTS 3.5 - 4.0</span>
+                        </div>
+                        <div class="level-bar" style="width: 35%;"></div>
+                        <div class="level-description">فهم الجمل الشائعة والتعبير عن الحاجات الأساسية.</div>
+                        <div class="level-indicator">Level 3 - 4</div>
+                    </div>
+                    <div class="level-group level-pre-intermediate">
+                        <div class="level-header">
+                            <span class="level-name">Pre-Intermediate</span>
+                            <span class="level-ielts">IELTS 4.0 - 5.0</span>
+                        </div>
+                        <div class="level-bar" style="width: 50%;"></div>
+                        <div class="level-description">القدرة على التواصل في مواقف يومية بسيطة.</div>
+                        <div class="level-indicator">Level 5 - 6</div>
+                    </div>
+                    <div class="level-group level-intermediate">
+                        <div class="level-header">
+                            <span class="level-name">Intermediate</span>
+                            <span class="level-ielts">IELTS 5.0 - 6.0</span>
+                        </div>
+                        <div class="level-bar" style="width: 65%;"></div>
+                        <div class="level-description">تواصل فعال في معظم المواقف، بداية للتعبير عن الرأي.</div>
+                        <div class="level-indicator">Level 7 - 8</div>
+                    </div>
+                    <div class="level-group level-upper-intermediate">
+                        <div class="level-header">
+                            <span class="level-name">Upper-Intermediate</span>
+                            <span class="level-ielts">IELTS 6.0 - 7.0</span>
+                        </div>
+                        <div class="level-bar" style="width: 80%;"></div>
+                        <div class="level-description">تواصل بثقة في مواقف أكثر تعقيداً، استعداد للأكاديمية.</div>
+                        <div class="level-indicator">Level 9 - 10</div>
+                    </div>
+                    <div class="level-group level-advanced">
+                        <div class="level-header">
+                            <span class="level-name">Advanced</span>
+                            <span class="level-ielts">IELTS 7.0 - 8.0+</span>
+                        </div>
+                        <div class="level-bar" style="width: 100%;"></div>
+                        <div class="level-description">طلاقة تامة، تواصل احترافي، مناسب للدراسة العليا.</div>
+                        <div class="level-indicator">Level 11 - 12</div>
+                    </div>
+                </div>
+                
+            
+            </div>
+        </section>
+
+        <section class="content-section bright-intake-dates hidden">
+            <div class="section-container">
+                <h2>التقويم الأكاديمي لـ Bright 2025</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">
+                    مواعيد بدء وانتهاء الفصول وفترات الإجازات.
+                </p>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الشهر</th>
+                                <th>تاريخ البدء</th>
+                                <th>تاريخ الانتهاء</th>
+                                <th>ملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>يناير</td><td>6 يناير</td><td>28 يناير</td><td></td></tr>
+                            <tr><td>فبراير</td><td>3 فبراير</td><td>28 فبراير</td><td></td></tr>
+                            <tr><td>مارس</td><td>3 مارس</td><td>28 مارس</td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td>إجازة الدورة: 29 مارس - 6 أبريل</td></tr>
+                            <tr><td>أبريل</td><td>7 أبريل</td><td>2 مايو</td><td></td></tr>
+                            <tr><td>مايو</td><td>5 مايو</td><td>30 مايو</td><td></td></tr>
+                            <tr><td>يونيو</td><td>3 يونيو</td><td>26 يونيو</td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td>إجازة الدورة: 28 يونيو - 6 يوليو</td></tr>
+                            <tr><td>يوليو</td><td>7 يوليو</td><td>1 أغسطس</td><td></td></tr>
+                            <tr><td>أغسطس</td><td>4 أغسطس</td><td>29 أغسطس</td><td></td></tr>
+                            <tr><td>سبتمبر</td><td>2 سبتمبر</td><td>26 سبتمبر</td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td>إجازة الدورة: 27 سبتمبر - 5 أكتوبر</td></tr>
+                            <tr><td>أكتوبر</td><td>6 أكتوبر</td><td>31 أكتوبر</td><td></td></tr>
+                            <tr><td>نوفمبر</td><td>3 نوفمبر</td><td>28 نوفمبر</td><td></td></tr>
+                            <tr><td>ديسمبر</td><td>1 ديسمبر</td><td>24 ديسمبر</td><td></td></tr>
+                            <tr><td></td><td></td><td></td><td>إجازة نهاية الدورة: 26 ديسمبر - 4 يناير</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bright-fees hidden">
+            <div class="section-container">
+                <h2>رسوم Bright Language Center الترويجية</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">جميع الأسعار بالرينجت الماليزي (RM).</p>
+
+                <h3>الرسوم الإجمالية لبرامج اللغة الإنجليزية العامة المكثفة (IGE)</h3>
+                <div class="table-wrapper">
+                    <table class="bright-combined-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>عدد الأشهر</th>
+                                <th>رسوم الدراسة (RM)</th>
+                                <th>الخصم (%)</th>
+                                <th>رسوم الإدارة (RM)</th>
+                                <th>رسوم الكتب/المواد (RM)</th>
+                                <th>رسوم الفيزا/التأمين/المطار (RM)</th>
+                                <th>المجموع الإجمالي (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="duration">1 شهر</td>
+                                <td class="price-value">2,380</td>
+                                <td class="price-value">0%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">150</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="total-price">3,030</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">2 أشهر</td>
+                                <td class="price-value">4,760</td>
+                                <td class="price-value">10%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">300</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="total-price">5,084</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">3 أشهر</td>
+                                <td class="price-value">7,140</td>
+                                <td class="price-value">15%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">450</td>
+                                <td class="price-value">لا تنطبق</td>
+                                <td class="total-price">7,019</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">4 أشهر</td>
+                                <td class="price-value">9,520</td>
+                                <td class="price-value">20%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">600</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">12,016</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">5 أشهر</td>
+                                <td class="price-value">11,900</td>
+                                <td class="price-value">20%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">750</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">14,070</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">6 أشهر</td>
+                                <td class="price-value">14,280</td>
+                                <td class="price-value">20%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">900</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">16,124</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">7 أشهر</td>
+                                <td class="price-value">16,660</td>
+                                <td class="price-value">20%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">1050</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">18,178</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">8 أشهر</td>
+                                <td class="price-value">19,040</td>
+                                <td class="price-value">25%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">1200</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">19,280</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">9 أشهر</td>
+                                <td class="price-value">21,420</td>
+                                <td class="price-value">25%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">1350</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">21,215</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">10 أشهر</td>
+                                <td class="price-value">23,800</td>
+                                <td class="price-value">30%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">1500</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">21,960</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">11 شهرًا</td>
+                                <td class="price-value">26,180</td>
+                                <td class="price-value">30%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">1650</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">23,776</td>
+                            </tr>
+                            <tr>
+                                <td class="duration">12 شهرًا</td>
+                                <td class="price-value">28,560</td>
+                                <td class="price-value">30%</td>
+                                <td class="price-value">500</td>
+                                <td class="price-value">1800</td>
+                                <td class="price-value">3,300</td>
+                                <td class="total-price">25,592</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="note" style="text-align: center; margin-top: 20px;">
+                    *رسوم الإدارة (RM500) ورسوم الفيزا/التأمين/المطار (RM3300) هي رسوم ثابتة تطبق عند التسجيل للمدد التي تتطلب فيزا (4 أشهر فأكثر). رسوم الكتب والمواد (RM150) تُحسب لكل شهر.
+                </p>
+
+                <div class="bright-special-offer">
+                    <h3>عرض خاص: 8 أشهر أو أكثر واحصل على IELTS مجانًا!</h3>
+                    <p class="offer-text">عند التسجيل لمدة 8 أشهر فأكثر في برنامج اللغة الإنجليزية المكثفة، ستحصل على:</p>
+                    <div class="offer-highlight">دورة IELTS مجانية</div>
+                    <p class="offer-text">و Bright يضمن لك تحقيق نتائج جيدة في امتحان IELTS.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="cta-banner hidden">
+            <div class="section-container">
+                <h2>جاهز لبدء رحلتك مع Bright؟</h2>
+                <p>تواصل معنا اليوم وسنساعدك في كل خطوة نحو تحقيق حلمك بالدراسة في ماليزيا.</p>
+                <a href="tel:+60183848634" class="button">سجل الآن!</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>

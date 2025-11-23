@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEC Language Centre - آفاق</title>
+        <link rel="icon" href="images/afaq-logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية والهيدر والفوتر كما هي لتوافق الموقع */
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الألوان الجديدة الباردة */
+        :root {
+            --primary-color: #607D8B; /* أزرق رمادي - لون بارد وأنيق */
+            --secondary-color: #FFE082; /* أصفر باهت / كريمي - للمسات البارزة الهادئة */
+            --text-color: #333;
+            --light-bg: #ECEFF1; /* خلفية فاتحة جداً */
+            --dark-bg: #455A64; /* أزرق رمادي داكن - للخلفيات الغامقة */
+            --accent-light-blue: #BBDEFB; /* أزرق فاتح بارد للتأثيرات الخفيفة */
+            --dark-red-highlight: #d9534f; /* لون مميز للسعر النهائي */
+        }
+
+        .page-header {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .info-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Table Styling (General for Offers and Intake) */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .data-table th, .data-table td {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .data-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+        .data-table td.highlight {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+        }
+        
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-banner .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-banner .button:hover {
+            background-color: #FBC02D;
+            transform: translateY(-3px);
+        }
+
+        /* Floating Contact Bar */
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .floating-contact-bar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            font-size: 1.8em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-contact-bar a:hover {
+            background-color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        .floating-contact-bar a.whatsapp { background-color: #25D366; }
+        .floating-contact-bar a.whatsapp:hover { background-color: #1DA851; }
+        .floating-contact-bar a.phone { background-color: #007bff; }
+        .floating-contact-bar a.phone:hover { background-color: #0056b3; }
+        .floating-contact-bar a.register { background-color: var(--secondary-color); color: var(--text-color); font-size: 1em; width: auto; padding: 10px 15px; border-radius: 30px;}
+        .floating-contact-bar a.register:hover { background-color: #FBC02D; transform: scale(1.05); }
+
+        /* ELEC Specific Program Grid */
+        .elec-programs-grid, .elec-ielts-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .elec-program-card, .elec-ielts-option-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .elec-program-card:hover, .elec-ielts-option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .elec-program-card h3, .elec-ielts-option-card h3 {
+            font-size: 1.8em;
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .elec-program-card ul, .elec-ielts-option-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .elec-program-card ul li, .elec-ielts-option-card ul li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .elec-program-card ul li::before, .elec-ielts-option-card ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Combined Pricing Table for ELEC */
+        .elec-pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        .elec-pricing-table th, .elec-pricing-table td {
+            padding: 12px 10px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 0.95em;
+        }
+
+        .elec-pricing-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        .elec-pricing-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .elec-pricing-table tr:hover {
+            background-color: var(--accent-light-blue);
+        }
+
+        .elec-pricing-table td.duration {
+            font-weight: bold;
+            color: var(--dark-bg);
+            text-align: right;
+        }
+
+        .elec-pricing-table td.price-value {
+            color: #333;
+        }
+        
+        .elec-pricing-table td.total-price {
+            font-weight: bold;
+            color: var(--dark-red-highlight);
+            text-align: center;
+            background-color: #FFF9C4;
+        }
+        
+        .elec-pricing-table .note {
+            font-size: 0.8em;
+            color: #666;
+            padding-top: 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 2.8em;
+            }
+            .page-header p {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2.2em;
+            }
+            .info-grid, .elec-programs-grid, .elec-ielts-options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .data-table th, .data-table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .elec-pricing-table th, .elec-pricing-table td {
+                padding: 8px 5px;
+                font-size: 0.85em;
+            }
+            .cta-banner h2 {
+                font-size: 2.5em;
+            }
+            .cta-banner p {
+                font-size: 1.2em;
+            }
+            .cta-banner .button {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .info-grid, .elec-programs-grid, .elec-ielts-options-grid {
+                grid-template-columns: 1fr;
+            }
+            .data-table th, .data-table td {
+                font-size: 0.8em;
+            }
+            .elec-pricing-table th, .elec-pricing-table td {
+                font-size: 0.7em;
+                padding: 6px 4px;
+            }
+            .elec-pricing-table th:nth-child(2),
+            .elec-pricing-table td:nth-child(2),
+            .elec-pricing-table th:nth-child(3),
+            .elec-pricing-table td:nth-child(3) {
+              
+            }
+            .cta-banner h2 {
+                font-size: 1.8em;
+            }
+            .cta-banner p {
+                font-size: 1.1em;
+            }
+            .cta-banner .button {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+            .floating-contact-bar {
+                bottom: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+            .floating-contact-bar a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            .floating-contact-bar a.register {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/afaq-logo.png" alt="Afaq Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                <li class="dropdown-container">
+                    <a href="institutes.html">معاهد اللغة</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ems.html">EMS Language Centre</a></li>
+                        <li><a href="bright.html">Bright Language Center</a></li>
+                        <li><a href="erican.html">Erican</a></li>
+                        <li><a href="sheffield.html">Sheffield Academy</a></li>
+                        <li><a href="elec.html">ELEC Language Centre</a></li>
+                        <li><a href="elit.html">Elit Language Centre</a></li>
+                    </ul>
+                </li>
+                <li><a href="accommodation.html">المساعدة في السكن</a></li>
+               <li><a href="restaurants.html">دليل المطاعم</a></li>
+               <li><a href="transportation.html">التنقل في كوالالمبور</a></li>
+                <li><a href="tel:+60183848634">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+        <a href="tel:+60183848634" class="cta-button">سجل الآن</a>
+    </header>
+
+    <section class="page-header">
+        <div class="section-container">
+            <h1>معهد ELEC Language Centre</h1>
+            <p>ELEC: المركز رقم 1 للغة الإنجليزية الأمريكية في ماليزيا.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section about-elec hidden">
+            <div class="section-container">
+                <h2>مرحباً بك في ELEC Language Centre!</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">✨</div>
+                        <h3>جودة تعليمية عالية</h3>
+                        <p>نقدم تعليمًا لغويًا عالي الجودة لمساعدتك على تحقيق أهدافك الأكاديمية والمهنية والشخصية.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🗣️</div>
+                        <h3>نهج يركز على الطالب</h3>
+                        <p>نعطي الأولوية لاحتياجات كل طالب، مع فصول دراسية ديناميكية وتفاعلية لتعزيز الثقة اللغوية.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">💡</div>
+                        <h3>مدربون ذوو خبرة ومرافق حديثة</h3>
+                        <p>فريق من المدربين المؤهلين والمرافق المجهزة بأحدث التقنيات لتعزيز تجربة التعلم.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🌍</div>
+                        <h3>انغماس ثقافي</h3>
+                        <p>نقدم بيئة مرحبة لممارسة مهارات اللغة خارج الفصل الدراسي من خلال التبادل الثقافي والأنشطة الاجتماعية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section elec-programs hidden">
+            <div class="section-container">
+                <h2>برامجنا التعليمية</h2>
+                <div class="elec-programs-grid">
+                    <div class="elec-program-card">
+                        <h3>برنامج اللغة الإنجليزية المكثف (IEP)</h3>
+                        <p>مصمم لتوفير تجربة تعلم شاملة وغامرة، مع فصول من الإثنين إلى الجمعة.</p>
+                        <ul>
+                            <li>نادي التحدث بالإنجليزية (الإثنين والأربعاء): لتعزيز الثقة في التحدث.</li>
+                            <li>عيادة الكتابة (الثلاثاء): لتحسين مهارات الكتابة مع توجيه شخصي.</li>
+                            <li>فصل الماندرين (الخميس): لتقديم أساسيات لغة الماندرين.</li>
+                        </ul>
+                    </div>
+                    <div class="elec-program-card">
+                        <h3>برنامج التحضير لاختبار IELTS</h3>
+                        <p>لإعداد الطلاب بالمهارات والاستراتيجيات اللازمة لتحقيق الدرجات المطلوبة في IELTS.</p>
+                        <ul>
+                            <li>تعزيز الكفاءة في الإنجليزية الأكاديمية والعامة.</li>
+                            <li>تطوير استراتيجيات فعالة لاجتياز الاختبار.</li>
+                            <li>التعرف على صيغة الاختبار وأنواع الأسئلة.</li>
+                            <li>تقديم ملاحظات شخصية لتحسين الأداء.</li>
+                            <li>مدرسون خبراء واختبارات تجريبية.</li>
+                        </ul>
+                    </div>
+                    <div class="elec-program-card">
+                        <h3>فصول خاصة مميزة (1:1 Premium Private Classes)</h3>
+                        <p>تجربة تعلم قابلة للتخصيص بالكامل لتحقيق أقصى قدر من النتائج في وقت قصير.</p>
+                        <ul>
+                            <li>تركز على أهداف الطالب المحددة (تحدث، كتابة، استماع، قراءة، تواصل عمل).</li>
+                            <li>مرونة في الوتيرة وخطة دراسية مخصصة.</li>
+                            <li>متاحة باللغات: الإنجليزية، الماندرين، الكورية، والملايو.</li>
+                            <li>السعر: 100 رينجت ماليزي للساعة (الحد الأدنى 16 ساعة).</li>
+                        </ul>
+                    </div>
+                    <div class="elec-program-card">
+                        <h3>برنامج لغة الماندرين</h3>
+                        <p>برنامج منظم وغامر لتطوير مهارات التواصل باللغة الصينية (الماندرين).</p>
+                        <ul>
+                            <li>يركز على التحدث، الاستماع، القراءة، والكتابة.</li>
+                            <li>الجدول: أيام الأسبوع (الاثنين - الخميس)، 8 ساعات أسبوعياً (ساعتان يومياً).</li>
+                            <li>المدة: 1 شهر (32 ساعة)، 2 شهر (64 ساعة)، أو 3 أشهر (96 ساعة).</li>
+                        </ul>
+                    </div>
+                    <div class="elec-program-card">
+                        <h3>برنامج الإنجليزية للمتعلمين الصغار (6-12 سنة)</h3>
+                        <p>مصمم لتوفير تجربة تعلم لغة جذابة وغامرة للأطفال خلال معسكرات الصيف والشتاء.</p>
+                        <ul>
+                            <li>المستويات: مبتدئ، متوسط، متقدم.</li>
+                            <li>دروس تفاعلية، ألعاب، أغاني، حرف يدوية، وأنشطة مثيرة.</li>
+                            <li>بناء الثقة والمهارات الأساسية في بيئة ممتعة ومنظمة.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section elec-iep-timetable hidden">
+            <div class="section-container">
+                <h2>جدول حصص برنامج اللغة الإنجليزية المكثف (IEP)</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">
+                    جدول الحصص الأسبوعي من 9:00 صباحاً إلى 3:15 مساءً، بالإضافة إلى فصول إثرائية.
+                </p>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الوقت</th>
+                                <th>الاثنين إلى الخميس</th>
+                                <th>الجمعة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>9:00 صباحًا - 10:30 صباحًا</td><td>قواعد</td><td>قواعد</td></tr>
+                            <tr><td>10:30 صباحًا - 10:45 صباحًا</td><td>استراحة</td><td>استراحة</td></tr>
+                            <tr><td>10:45 صباحًا - 12:15 ظهرًا</td><td>قراءة وكتابة</td><td>قراءة وكتابة</td></tr>
+                            <tr><td>12:15 ظهرًا - 1:00 ظهرًا</td><td>غداء</td><td>غداء</td></tr>
+                            <tr><td>1:00 ظهرًا - 2:00 ظهرًا</td><td>تحدث واستماع</td><td></td></tr>
+                            <tr><td>2:00 ظهرًا - 2:15 ظهرًا</td><td>استراحة</td><td></td></tr>
+                            <tr><td>2:15 ظهرًا - 3:15 ظهرًا</td><td>مهارات التواصل</td><td></td></tr>
+                            <tr><td>3:30 مساءً - 4:30 مساءً</td><td>نادي التحدث/عيادة الكتابة</td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section elec-ielts-timetable hidden">
+            <div class="section-container">
+                <h2>مواعيد حصص برنامج التحضير لاختبار IELTS</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">
+                    فصول مركزة من الاثنين إلى الخميس.
+                </p>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الأيام</th>
+                                <th>الوقت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>الاثنين إلى الخميس</td><td>1:00 ظهرًا - 5:00 مساءً</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section elec-fees hidden">
+            <div class="section-container">
+                <h2>رسوم برامج ELEC Language Centre</h2>
+                <p class="text-center" style="font-size: 1.1em; margin-bottom: 20px; color: #666;">جميع الأسعار بالرينجت الماليزي (RM).</p>
+
+                <h3>رسوم برنامج اللغة الإنجليزية المكثف (IEP)</h3>
+                <div class="table-wrapper">
+                    <table class="elec-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>مدة البرنامج</th>
+                                <th>رسوم الدراسة (RM)</th>
+                                <th>اختبار تحديد المستوى والتسجيل (RM)</th>
+                                <th>EMGS (فيزا، فحص طبي، تأمين، I-Kad) (RM)</th>
+                                <th>الكتب والمواد والرسوم التقنية (RM)</th>
+                                <th>التخليص الجمركي واستقبال المطار (RM)</th>
+                                <th>المجموع الإجمالي (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 شهر</td><td>2,500</td><td>450</td><td>لا تنطبق</td><td>250</td><td>لا تنطبق</td><td>3,200</td></tr>
+                            <tr><td>2 أشهر</td><td>4,800</td><td>450</td><td>لا تنطبق</td><td>500</td><td>لا تنطبق</td><td>5,750</td></tr>
+                            <tr><td>3 أشهر</td><td>7,200</td><td>450</td><td>لا تنطبق</td><td>750</td><td>لا تنطبق</td><td>8,400</td></tr>
+                            <tr><td>4 أشهر</td><td>9,600</td><td>450</td><td>2,500</td><td>1,000</td><td>300</td><td>13,850</td></tr>
+                            <tr><td>5 أشهر</td><td>12,000</td><td>450</td><td>2,500</td><td>1,250</td><td>300</td><td>16,500</td></tr>
+                            <tr><td>6 أشهر</td><td>14,400</td><td>450</td><td>2,500</td><td>1,500</td><td>300</td><td>19,150</td></tr>
+                            <tr><td>7 أشهر</td><td>16,800</td><td>450</td><td>2,500</td><td>1,750</td><td>300</td><td>21,800</td></tr>
+                            <tr><td>8 أشهر</td><td>19,200</td><td>450</td><td>2,500</td><td>2,000</td><td>300</td><td>24,450</td></tr>
+                            <tr><td>9 أشهر</td><td>21,600</td><td>450</td><td>2,500</td><td>2,250</td><td>300</td><td>27,100</td></tr>
+                            <tr><td>10 أشهر</td><td>24,000</td><td>450</td><td>2,500</td><td>2,500</td><td>300</td><td>29,750</td></tr>
+                            <tr><td>11 شهرًا</td><td>26,400</td><td>450</td><td>2,500</td><td>2,750</td><td>300</td><td>32,400</td></tr>
+                            <tr><td>12 شهرًا</td><td>28,800</td><td>450</td><td>2,500</td><td>3,000</td><td>300</td><td>35,050</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="note" style="text-align: center; margin-top: 20px;">
+                    *رسوم EMGS، التخليص الجمركي واستقبال المطار تطبق فقط للمدد 4 أشهر فأكثر.
+                </p>
+
+                <h3 style="margin-top: 40px;">رسوم برنامج التحضير لاختبار IELTS</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>الرسوم (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 شهر</td><td>3,200</td></tr>
+                            <tr><td>2 أشهر</td><td>5,750</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px;">رسوم برنامج لغة الماندرين</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>رسوم الدراسة (RM)</th>
+                                <th>رسوم التسجيل (RM)</th>
+                                <th>المواد (RM)</th>
+                                <th>المجموع (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 شهر</td><td>3,200</td><td>300</td><td>250</td><td>3,750</td></tr>
+                            <tr><td>2 أشهر</td><td>6,400</td><td>300</td><td>250</td><td>7,200</td></tr>
+                            <tr><td>3 أشهر</td><td>9,600</td><td>300</td><td>500</td><td>10,400</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px;">رسوم برنامج الإنجليزية للمتعلمين الصغار (6-12 سنة)</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الفئة العمرية</th>
+                                <th>الرسوم (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>6-12 سنة</td><td>3,400</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px;">رسوم الفصول الخاصة المميزة (1:1 Premium Private Classes)</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>نوع الرسوم</th>
+                                <th>القيمة (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>لكل ساعة</td><td>100</td></tr>
+                            <tr><td>رسوم التسجيل (مرة واحدة)</td><td>300</td></tr>
+                            <tr><td>اختبار تحديد المستوى</td><td>150</td></tr>
+                            <tr><td>رسوم المواد والتقنية</td><td>250</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="note" style="text-align: center; margin-top: 10px;">
+                    *ملاحظة: هذه الرسوم الإضافية للفصول الخاصة يتم التنازل عنها تلقائيًا لطلاب ELEC الحاليين.
+                </p>
+            </div>
+        </section>
+        
+        <section class="content-section elec-refund-policy hidden">
+            <div class="section-container">
+                <h2>سياسة استرداد الرسوم</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>الرسوم غير قابلة للاسترداد/التحويل</h3>
+                        <ul>
+                            <li>رسوم التسجيل واختبار تحديد المستوى غير قابلة للاسترداد.</li>
+                            <li>الرسوم المدفوعة غير قابلة للتحويل أو الاسترداد بشكل عام.</li>
+                            <li>لا يتم إصدار أي مبالغ مستردة بعد بدء الفصول الدراسية.</li>
+                            <li>غير مسموح بتحويل البرنامج إلى برنامج آخر.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>الإلغاءات قبل بدء الفصول</h3>
+                        <ul>
+                            <li>قبل 14 يومًا: سيتم خصم رسوم درس أسبوع واحد، بالإضافة إلى رسوم إدارية وإلغاء.</li>
+                            <li>أقل من 14 يومًا: سيتم خصم رسوم درس أسبوع واحد، بالإضافة إلى رسوم إدارية وإلغاء.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>سياسة رفض التأشيرة</h3>
+                        <p>في حال رفض التأشيرة الطلابية، فإن الرسوم المدفوعة لا تسترد بشكل صارم.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>عملية استرداد الرسوم (في الحالات الاستثنائية)</h3>
+                        <ul>
+                            <li>يتم إصدار المبالغ المستردة للمدفع الأصلي فقط.</li>
+                            <li>تستغرق المعالجة 90 يومًا على الأقل.</li>
+                            <li>يمكن دفع المبالغ المستردة على مراحل، حسب تقدير ELEC.</li>
+                            <li>تتم دراسة الإلغاءات والاسترداد فقط في الظروف الاستثنائية (مثل الطوارئ الصحية العالمية أو الكوارث الطبيعية).</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>تغييرات أخرى</h3>
+                        <ul>
+                            <li>يسمح بتغيير الفصول وفقًا لقواعد ولوائح القسم الأكاديمي.</li>
+                            <li>تخضع الشروط والأحكام للتغيير دون إشعار مسبق.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner hidden">
+            <div class="section-container">
+                <h2>جاهز لبدء رحلتك مع ELEC؟</h2>
+                <p>تواصل معنا اليوم وسنساعدك في كل خطوة نحو تحقيق حلمك بالدراسة في ماليزيا.</p>
+                <a href="tel:+60183848634" class="button">سجل الآن!</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن آفاق (Afaq)</h3>
+                <p>بوابتك الموثوقة للدراسة في أفضل معاهد اللغة الإنجليزية في ماليزيا. نقدم لك المساعدة في كل خطوة، من القبول وحتى الاستقرار.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                    <li><a href="institutes.html">معاهد اللغة</a></li>
+                    <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                    <li><a href="restaurants.html">دليل المطاعم</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <p><strong>واتساب:</strong> <a href="https://wa.me/60183848634" target="_blank">+60 18 384 8634</a></p>
+                <p><strong>ايميل:</strong> info@afaq-study.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>© 2025 آفاق. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact-bar">
+        <a href="https://wa.me/60183848634" target="_blank" class="whatsapp" title="تواصل واتساب">
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+        <a href="tel:+60183848634" class="phone" title="اتصل بنا">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="tel:+60183848634" class="register" title="سجل الآن">سجل الآن</a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="js/script.js"></script>
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.hidden').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
