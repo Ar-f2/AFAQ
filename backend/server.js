@@ -48,14 +48,15 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 // Serve public website
 app.use(express.static(path.join(__dirname, '../public')));
 
-// API Routes (will be added later)
-// app.use('/api/v1/auth', require('./routes/auth'));
-// app.use('/api/v1/agents', require('./routes/agents'));
-// app.use('/api/v1/institutes', require('./routes/institutes'));
+// API Routes
+app.use('/api/v1/auth', require('./routes/auth'));
+app.use('/api/v1/agents', require('./routes/agents'));
+app.use('/api/v1/institutes', require('./routes/institutes'));
+app.use('/api/v1/media', require('./routes/media'));
+// TODO: Add these routes later
 // app.use('/api/v1/pages', require('./routes/pages'));
 // app.use('/api/v1/registrations', require('./routes/registrations'));
 // app.use('/api/v1/messages', require('./routes/messages'));
-// app.use('/api/v1/media', require('./routes/media'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
