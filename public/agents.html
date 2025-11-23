@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تواصل مع وكلاء أفاق المعتمدين عبر الواتساب - استشارة مجانية">
+    <title>وكلاؤنا - أفاق</title>
+
+    <link rel="icon" href="assets/images/afaq-logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/agents.css">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <div class="nav-brand">
+                <img src="assets/images/afaq-logo.png" alt="AFAQ Logo" class="logo">
+                <span class="brand-name">أفاق</span>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="institutes.html" class="nav-link">المعاهد</a></li>
+                <li class="nav-item"><a href="universities.html" class="nav-link">الجامعات</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">الخدمات <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                        <li><a href="restaurants.html">دليل المطاعم</a></li>
+                        <li><a href="transportation.html">المواصلات</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="why-malaysia.html" class="nav-link">لماذا ماليزيا؟</a></li>
+                <li class="nav-item"><a href="agents.html" class="nav-link active">وكلاؤنا</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" data-aos="fade-down">
+        <div class="page-header-overlay"></div>
+        <div class="container">
+            <h1 class="page-title">وكلاؤنا المعتمدون</h1>
+            <p class="page-subtitle">تواصل مع وكلائنا المتخصصين واحصل على استشارة مجانية</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-container" data-aos="fade-up">
+                <label class="filter-label">
+                    <i class="fas fa-filter"></i> تصفية حسب التخصص:
+                </label>
+                <div class="filter-buttons" id="filterButtons">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="معاهد اللغة">معاهد اللغة</button>
+                    <button class="filter-btn" data-filter="الجامعات">الجامعات</button>
+                    <button class="filter-btn" data-filter="الدراسات العليا">الدراسات العليا</button>
+                    <button class="filter-btn" data-filter="التخصصات الطبية">التخصصات الطبية</button>
+                    <button class="filter-btn" data-filter="التخصصات الهندسية">التخصصات الهندسية</button>
+                    <button class="filter-btn" data-filter="إدارة الأعمال">إدارة الأعمال</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agents Section -->
+    <section class="agents-section section-padding">
+        <div class="container">
+            <div class="agents-grid" id="agentsGrid">
+                <!-- Will be loaded dynamically -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>جاري تحميل الوكلاء...</p>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>لا توجد نتائج</h3>
+                <p>لم نجد وكلاء متخصصين في هذا المجال حالياً</p>
+                <button class="btn btn-primary" onclick="resetFilter()">عرض جميع الوكلاء</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section bg-light section-padding">
+        <div class="container">
+            <div class="info-content">
+                <div class="info-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>وكلاء معتمدون</h3>
+                    <p>جميع وكلائنا معتمدون ومرخصون رسمياً</p>
+                </div>
+                <div class="info-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-comments"></i>
+                    <h3>استشارة مجانية</h3>
+                    <p>احصل على استشارة مجانية عبر الواتساب</p>
+                </div>
+                <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-clock"></i>
+                    <h3>رد سريع</h3>
+                    <p>نرد على استفساراتك خلال ساعات قليلة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-aos="fade-up">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">لم تجد ما تبحث عنه؟</h2>
+                <p class="cta-text">تواصل معنا مباشرة وسنساعدك في إيجاد الحل المناسب</p>
+                <a href="contact.html" class="btn btn-light">
+                    <i class="fas fa-envelope"></i> أرسل رسالة
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="assets/images/afaq-logo.png" alt="AFAQ Logo" class="footer-logo">
+                        <h3>أفاق</h3>
+                    </div>
+                    <p>بوابتك للدراسة في ماليزيا</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="institutes.html">المعاهد</a></li>
+                        <li><a href="universities.html">الجامعات</a></li>
+                        <li><a href="why-malaysia.html">لماذا ماليزيا؟</a></li>
+                        <li><a href="agents.html">وكلاؤنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>الخدمات</h4>
+                    <ul class="footer-links">
+                        <li><a href="accommodation.html">المساعدة في السكن</a></li>
+                        <li><a href="restaurants.html">دليل المطاعم</a></li>
+                        <li><a href="transportation.html">المواصلات</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>معلومات التواصل</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> كوالالمبور، ماليزيا</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+60123456789">+60 12 345 6789</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@afaq.com">info@afaq.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 أفاق - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/agents.js"></script>
+</body>
+</html>
